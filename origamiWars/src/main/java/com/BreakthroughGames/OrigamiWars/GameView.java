@@ -17,6 +17,9 @@ import com.BreakthroughGames.OrigamiWars.stages.Stage3_1;
 import com.BreakthroughGames.OrigamiWars.stages.Stage3_2;
 import com.BreakthroughGames.OrigamiWars.stages.Stage3_3;
 import com.BreakthroughGames.OrigamiWars.stages.Stage_Arcade;
+import com.BreakthroughGames.OrigamiWars.story.StoryEnd;
+import com.BreakthroughGames.OrigamiWars.story.StoryMiddle;
+import com.BreakthroughGames.OrigamiWars.story.StoryStart;
 
 public class GameView extends GLSurfaceView implements Renderer					//Class to implement GL init and Rendering
 { 			

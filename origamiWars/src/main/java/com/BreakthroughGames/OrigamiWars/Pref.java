@@ -7,7 +7,7 @@ public class Pref {
 	
 	protected static final int STORY_NEW      = 0;
 	protected static final int LEVEL_RESUME   = 1;
-	protected static final int LEVEL_COMPLETE = 2;
+	public static final int LEVEL_COMPLETE = 2;
 	protected static final int LEVEL_RESTART  = 3;
 	protected static final int GAME_EXIT   	  = 4;
 	public static final int GAME_OVER      = 5;

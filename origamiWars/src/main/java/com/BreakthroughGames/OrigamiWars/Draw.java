@@ -12,7 +12,7 @@ public class Draw
 
 	protected static GL10 gl;
 	protected int iSprite = 0;
-	protected int iTexture = 0; 
+	public int iTexture = 0;
 	protected float Opacity = 1.0f;
 	private float txtStartX = 0, txtStartY = 0, txtEndX = 0.25f, txtEndY = 0.25f;
 	protected static final float[][] arrSpriteCord ={{0.0f,0.0f},	{0.25f,0.0f},	{0.5f,0.0f},	{0.75f,0.0f}, 	  

@@ -1,4 +1,12 @@
-package com.BreakthroughGames.OrigamiWars;
+package com.BreakthroughGames.OrigamiWars.story;
+
+import com.BreakthroughGames.OrigamiWars.Adventure;
+import com.BreakthroughGames.OrigamiWars.Pref;
+import com.BreakthroughGames.OrigamiWars.Screen;
+import com.BreakthroughGames.OrigamiWars.Sound;
+import com.BreakthroughGames.OrigamiWars.SoundPlayer;
+import com.BreakthroughGames.OrigamiWars.Texture;
+import com.BreakthroughGames.OrigamiWars.Values;
 
 public class StoryMiddle extends Adventure
 {

@@ -20,7 +20,7 @@ public class Screen
 	protected static float DEV_MAX_Y = 9;
 	private static final float MAX_X = 12;											// Maximum X units for any Aspect ratio
 
-	protected static final int MENU_OFF 	 = 0;
+	public static final int MENU_OFF 	 = 0;
 	protected static final int MENU_PAUSE 	 = 1;
 	public static final int MENU_GAMEOVER = 2;
 
@@ -52,7 +52,11 @@ public class Screen
 	protected static float touchY;						// Finger GL-Cords, used to detected which object is touched on screen
 	private   static int eLeft, eRight, leftFingerId = -1, rightFingerId = -1;		// Which half of the screen is touched
 	private   static int indxLeft, indxRight, countRight, finCount, curIndex;
-	protected static boolean bShockWave = false, bPause = false, bTouch =  false, bMenu = false, bTap = false;
+	protected static boolean bShockWave = false;
+	public static boolean bPause = false;
+	protected static boolean bTouch =  false;
+	protected static boolean bMenu = false;
+	protected static boolean bTap = false;
 
 	Screen()	{}
 	protected static void reset() {

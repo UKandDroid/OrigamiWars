@@ -31,7 +31,9 @@ public class Events extends Base {
     protected static Vibrator vibrate;
     private int curEvent = -1, curEvePri = -1;
     private float vLineStart, timeVisible, timeElapsed;
-    protected float scaleX = 0, scaleY = 0, txtLineWidth = 0.05f;
+    protected float scaleX = 0;
+    protected float scaleY = 0;
+    public float txtLineWidth = 0.05f;
     // Events IDs
     public static final int READY = 0;
     public static final int SURVIVE = 1;                    // Event with GUI, Events Texture
@@ -231,7 +233,7 @@ public class Events extends Base {
     /************************************************************************************************************************
      *   METHOD- Initilizes variables, called by setEvent(int) also by storyEvent to show story
      ***********************************************************************************************************************/
-    protected void setEvent(int line, float time, boolean vPause) {
+    public void setEvent(int line, float time, boolean vPause) {
         bEnable = true;
         startTime = System.currentTimeMillis();
         vLineStart = line;

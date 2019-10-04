@@ -14,7 +14,7 @@ import android.opengl.GLUtils;
 public class Texture 
 {//Class to upload texture sprites
 	protected static GL10 gl;
-	protected int iTexture = 0;
+	public int iTexture = 0;
 	private static int[] textures = {0};
 	private static final int MAX_ASYNC_TEXTURE = 4;											// Async Textures Queue
 	private static boolean bGenerateTxt = false, bDecodingTxt = false;						// Generate texture once bitmap is decoded
@@ -24,7 +24,7 @@ public class Texture
 	private static int arrResIds[] = {0,0,0,0};												// Array for resource Ids
 
 	protected static final int SHEET_PSS 	 	 = R.drawable.sheet_pss;
-	protected static final int STORY_START    	 = R.drawable.story_start;
+	public static final int STORY_START    	 = R.drawable.story_start;
 	protected static final int STORY_END   		 = R.drawable.story_end;
 	protected static final int SHEET_PLANE 		 = R.drawable.sheet_plane;
 	protected static final int SHEET_PUPS 		 = R.drawable.sheet_powerups;
@@ -47,7 +47,7 @@ public class Texture
 	protected Texture() {  }
 	protected Texture(GL10 glRef) {  gl = glRef;	}
 
-	protected int loadTexture(int texture)	{ return iTexture = getTxtId( texture, GL10.GL_CLAMP_TO_EDGE);	}
+	public int loadTexture(int texture)	{ return iTexture = getTxtId( texture, GL10.GL_CLAMP_TO_EDGE);	}
 	protected int loadTexture(int texture, int repeatOrClamp) { return iTexture =  getTxtId(texture, repeatOrClamp);	}
 	protected static int getTxtId(int texture){ return getTxtId(texture, GL10.GL_CLAMP_TO_EDGE);}
 	protected static int getTxtId(int texture, int repeatOrClamp)
