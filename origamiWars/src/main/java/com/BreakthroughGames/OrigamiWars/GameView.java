@@ -2,12 +2,21 @@ package com.BreakthroughGames.OrigamiWars;
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
-import android.app.Activity;
 import android.content.Context;
 import android.opengl.GLSurfaceView;
 import android.opengl.GLSurfaceView.Renderer;
-import android.util.Log;
 import android.view.MotionEvent;
+
+import com.BreakthroughGames.OrigamiWars.stages.Stage1_1;
+import com.BreakthroughGames.OrigamiWars.stages.Stage1_2;
+import com.BreakthroughGames.OrigamiWars.stages.Stage1_3;
+import com.BreakthroughGames.OrigamiWars.stages.Stage2_1;
+import com.BreakthroughGames.OrigamiWars.stages.Stage2_2;
+import com.BreakthroughGames.OrigamiWars.stages.Stage2_3;
+import com.BreakthroughGames.OrigamiWars.stages.Stage3_1;
+import com.BreakthroughGames.OrigamiWars.stages.Stage3_2;
+import com.BreakthroughGames.OrigamiWars.stages.Stage3_3;
+import com.BreakthroughGames.OrigamiWars.stages.Stage_Arcade;
 
 public class GameView extends GLSurfaceView implements Renderer					//Class to implement GL init and Rendering
 { 			
@@ -138,7 +147,7 @@ public class GameView extends GLSurfaceView implements Renderer					//Class to i
 				level[2] = new StoryStart();									// Play story after first level so use dont skip quickly
 				level[3] = new Stage1_2();
 				level[4] = new StoryMiddle();
-				level[5] = new Stage1_3(); 
+				level[5] = new Stage1_3();
 				level[6] = new Stage2_1();
 				level[7] = new Stage2_2();
 				level[8] = new Stage2_3();

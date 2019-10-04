@@ -15,14 +15,14 @@ public class Screen
 	static String strLog = "";
 
 	protected static float CHAR_WIDTH ;												// Screen in divided into sections for X and Y
-	protected static float CHAR_HEIGHT;												// Each character is one screen unit in width and height
+	public static float CHAR_HEIGHT;												// Each character is one screen unit in width and height
 	protected static float DEV_MAX_X ;												// Calculated, depending on device AspectRatio
 	protected static float DEV_MAX_Y = 9;
 	private static final float MAX_X = 12;											// Maximum X units for any Aspect ratio
 
 	protected static final int MENU_OFF 	 = 0;
 	protected static final int MENU_PAUSE 	 = 1;
-	protected static final int MENU_GAMEOVER = 2;
+	public static final int MENU_GAMEOVER = 2;
 
 	protected static float butFireY = 0, butFireX = 0;								// GL Rescaled co-ordinated for Menu and fire button
 	protected static float MENU_MAX_X = 0, MENU_MAX_Y = 0;
@@ -45,9 +45,11 @@ public class Screen
 
 	private   static int event;
 	private   static Base oTap = Adventure.oTap;
-	protected static int iMenu = MENU_OFF;
+	public static int iMenu = MENU_OFF;
 	private   static float PIXELS_X = -1, PIXELS_Y = -1;							// Screen X-Res, Y-Res and Middle
-	protected static float ASPECT_RATIO = 1, touchX, touchY;						// Finger GL-Cords, used to detected which object is touched on screen 							
+	public static float ASPECT_RATIO = 1;
+	protected static float touchX;
+	protected static float touchY;						// Finger GL-Cords, used to detected which object is touched on screen
 	private   static int eLeft, eRight, leftFingerId = -1, rightFingerId = -1;		// Which half of the screen is touched
 	private   static int indxLeft, indxRight, countRight, finCount, curIndex;
 	protected static boolean bShockWave = false, bPause = false, bTouch =  false, bMenu = false, bTap = false;

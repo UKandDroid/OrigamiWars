@@ -1,13 +1,24 @@
-package com.BreakthroughGames.OrigamiWars;
+package com.BreakthroughGames.OrigamiWars.stages;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import com.BreakthroughGames.OrigamiWars.Adventure;
+import com.BreakthroughGames.OrigamiWars.Base;
+import com.BreakthroughGames.OrigamiWars.Draw;
+import com.BreakthroughGames.OrigamiWars.EnemyFire;
+import com.BreakthroughGames.OrigamiWars.Events;
+import com.BreakthroughGames.OrigamiWars.HUD;
+import com.BreakthroughGames.OrigamiWars.Player;
+import com.BreakthroughGames.OrigamiWars.Pref;
 import com.BreakthroughGames.OrigamiWars.R;
+import com.BreakthroughGames.OrigamiWars.Screen;
+import com.BreakthroughGames.OrigamiWars.Sound;
+import com.BreakthroughGames.OrigamiWars.SoundPlayer;
+import com.BreakthroughGames.OrigamiWars.Values;
 
 import android.util.Log;
 
-public class Stage1_1 extends Adventure
-{
+public class Stage1_1 extends Adventure {
 	private static final float leafData[][]= {{ 2.4f,  6.7f,  16.3f,  17.9f,  25f,  31.1f,  32.4f,},
 											 {  8.7f,   7.6f,   7.2f,   7.8f,   8.5f,  7.8f,  8.4f, },
 											 {Values.PATH_WIND, EnemyFire.SHOT_NONE, 0, 0, }};
@@ -106,7 +117,7 @@ public void initObjects()
 private static void drawBackgrounds()
 {	
 	
-	Draw.transform(0.7f, 1, 0, 0);									// Draw Sky 
+	Draw.transform(0.7f, 1, 0, 0);									// Draw Sky
 	BG_Sky.draw();
 		
 	Draw.transform(0.5f, 1,0.8f,0);
@@ -139,7 +150,7 @@ public byte checkGameStatus()
 			{
 			case 0: iSequence++;	Pref.getSet(Pref.GAME_OVER);		break;
 			case 1:	iSequence++;	events.dispatch(Events.GAME_OVER);	break;
-			case 2: Screen.iMenu =  Screen.MENU_GAMEOVER; 	return Values.GAME_OVER; 		 	
+			case 2: Screen.iMenu =  Screen.MENU_GAMEOVER; 	return Values.GAME_OVER;
 			}
 	else if(!events.bEnable && enemyDestroyed == LEVEL_ENEMIES)	// Level Complete
 		switch(iSequence)

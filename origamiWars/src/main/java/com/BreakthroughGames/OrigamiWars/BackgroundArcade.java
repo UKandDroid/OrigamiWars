@@ -28,7 +28,7 @@ public class BackgroundArcade extends Texture {
 	/************************************************************************************************************************
 	 *   METHOD -  
 	 ************************************************************************************************************************/
-	protected void loadTexture(int resTexture[]) {
+	public void loadTexture(int resTexture[]) {
 		nextPlane = nextImage = 0;
 		arrTxt = resTexture;
 		iTotalImages = resTexture.length;
@@ -41,7 +41,7 @@ public class BackgroundArcade extends Texture {
 		nextPlane = 0;
 	}
 	
-	protected void resumeTexture() {
+	public void resumeTexture() {
 		 
 		bgPlane[nextPlane++].loadTexture( arrTxt[(nextImage < 3) ? nextImage-4 + iTotalImages : nextImage-3]);
 		if(nextPlane > 2){ nextPlane = 0; }

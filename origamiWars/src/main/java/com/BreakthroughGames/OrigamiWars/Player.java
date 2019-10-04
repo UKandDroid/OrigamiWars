@@ -31,7 +31,7 @@ public class Player extends Base
 	private static int  eLastAction, rollTimer;							// Status of current action In Progress, like rolling		
 	private static float bankSpeed = Values.BASIC_SPEED * 22;
 	protected static float PLANE_SPEED = Values.BASIC_SPEED * 4;		// 0.0133,  plane moves 0.8f in 1sec or 60 frames
-	protected static int iLives = 0, iPower = Values.PLAYER_POWER ;		// Three lives, and three power for each live
+	public static int iLives = 0, iPower = Values.PLAYER_POWER ;		// Three lives, and three power for each live
 	protected boolean bInvincible = false, bSpawned = false;
 	protected static boolean bFalling = false;
 	private short arrSprites[][]= {	

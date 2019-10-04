@@ -25,7 +25,7 @@ public class Base extends Draw
 	protected float speed = 0f;
 	protected float distance = 0.0f; 										// How far is the Object so its displayed at appropriate time
 	protected static int counterID = 0;
-	protected boolean bEnable = false;
+	public boolean bEnable = false;
 	protected int iType = 0, iPath = 0; 
 	protected final static  Random ran = new Random();	 
 	protected static Draw oSprtie = new Draw();								// For default sprite size use this Object

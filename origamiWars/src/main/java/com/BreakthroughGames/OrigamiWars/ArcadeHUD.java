@@ -42,7 +42,7 @@ public class ArcadeHUD
 	/************************************************************************************************************************
 	 *  METHOD -- Show HUD stats, lives and current selected weapon
 	 ***********************************************************************************************************************/
-	protected static void showStats() {
+	public static void showStats() {
 		if(Screen.iMenu == Screen.MENU_OFF) {
 			int tSprite = 0;
 			iconShift = 0.6f;

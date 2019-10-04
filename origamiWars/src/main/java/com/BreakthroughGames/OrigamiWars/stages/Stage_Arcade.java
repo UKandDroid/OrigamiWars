@@ -1,17 +1,27 @@
-package com.BreakthroughGames.OrigamiWars;
+package com.BreakthroughGames.OrigamiWars.stages;
+
+import com.BreakthroughGames.OrigamiWars.Arcade;
+import com.BreakthroughGames.OrigamiWars.ArcadeHUD;
+import com.BreakthroughGames.OrigamiWars.Events;
+import com.BreakthroughGames.OrigamiWars.Game;
+import com.BreakthroughGames.OrigamiWars.Player;
+import com.BreakthroughGames.OrigamiWars.Pref;
+import com.BreakthroughGames.OrigamiWars.R;
+import com.BreakthroughGames.OrigamiWars.Screen;
+import com.BreakthroughGames.OrigamiWars.Sound;
+import com.BreakthroughGames.OrigamiWars.SoundPlayer;
+import com.BreakthroughGames.OrigamiWars.Values;
 
 import javax.microedition.khronos.opengles.GL10;
 
-public class Stage_Arcade extends Arcade
-{
+public class Stage_Arcade extends Arcade {
 
 	// Method call Sequence for New Game: loadingScreen() -> LoadLevel(){ super.Reset() InitObjects() resumeLevel()}
 	// Method call Sequence for Resume Game :  resumeLevel();
 	/*============================================Start Class Methods=============================================================*/	
 
 	@Override
-	public void resumeLevel()
-	{
+	public void resumeLevel() {
 		BG_HD_Front.resumeTexture();
 		BG_HD_Middle.resumeTexture();
 		BG_HD_Sky.resumeTexture();
@@ -21,9 +31,8 @@ public class Stage_Arcade extends Arcade
 	 *    METHOD--  Load Level Called only when App starts first time, unloadLevel called for every Level 
 	 ************************************************************************************************************************/
 	protected void loadLevel()	{	
-		switch(ran.nextInt(5))
-		{
-		case 0: SoundPlayer.playSound(Sound.BG_MUSIC_LEVEL1); break;										
+		switch(ran.nextInt(5)) {
+		case 0: SoundPlayer.playSound(Sound.BG_MUSIC_LEVEL1); break;
 		case 1: SoundPlayer.playSound(Sound.BG_MUSIC_LEVEL2); break;
 		case 2: SoundPlayer.playSound(Sound.BG_MUSIC_LEVEL3); break;
 		case 3: SoundPlayer.playSound(Sound.BG_MUSIC_LEVEL4); break;
@@ -68,7 +77,7 @@ public class Stage_Arcade extends Arcade
 				R.drawable.bg_clouds_37, R.drawable.bg_clouds_38, R.drawable.bg_clouds_39, R.drawable.bg_clouds_40,
 				R.drawable.bg_clouds_41, R.drawable.bg_clouds_42, R.drawable.bg_clouds_43, R.drawable.bg_clouds_44,
 		});	
-		Pref.getSet(Pref.ARCADE_NEW);														// Set preference for 
+		Pref.getSet(Pref.ARCADE_NEW);														// Set preference for
 	}
 	/************************************************************************************************************************
 	 *   METHOD - When player restarts a level, set level stats as they were at the start of the level 
@@ -95,11 +104,9 @@ public class Stage_Arcade extends Arcade
 	/************************************************************************************************************************
 	 *  METHOD - Runs a frame, shows Head up display
 	 ************************************************************************************************************************/
-	static void headUpDisplay()
-	{
+	static void headUpDisplay() {
 		ArcadeHUD.showStats();																// Show Stats HUD - Life, weapon, fire etc
-		switch(events.iTimer)
-		{			
+		switch(events.iTimer) {
 		case 1:		events.dispatch(Events.READY);  			break;
 		case 60:	events.dispatch(Events.SURVIVE);  			break;
 		case 120:	events.dispatch(Events.SCORE);  			break;
@@ -118,7 +125,7 @@ public class Stage_Arcade extends Arcade
 		BG_HD_Front.transform(1.05f, 1.0f, -0.05f, 0);										// Draw Sky
 
 		if(Player.iLives> 0){
-			BG_HD_Sky.draw(0.0f, (Values.SCROLL_SPEED/4)*Game.SPEED_MULT);
+			BG_HD_Sky.draw(0.0f, (Values.SCROLL_SPEED/4)* Game.SPEED_MULT);
 			BG_HD_Middle.draw(0.0f, (Values.SCROLL_SPEED/(2*1.295f))*Game.SPEED_MULT);
 			BG_HD_Front.draw(0.0f, (Values.SCROLL_SPEED/2)*Game.SPEED_MULT);
 		} else {
@@ -141,11 +148,9 @@ public class Stage_Arcade extends Arcade
 	/************************************************************************************************************************
 	 *   METHOD- Draws Background for the level
 	 ***********************************************************************************************************************/
-	public byte checkGameStatus()
-	{
+	public byte checkGameStatus() {
 		if(!events.bEnable && Player.iLives <= 0 )											// If player died, do events in sequence
-			switch(iSequence)
-			{
+			switch(iSequence) {
 			case 0: iSequence++;	Pref.getSet(Pref.GAME_OVER);		break;
 			case 1:	iSequence++;	events.dispatch(Events.GAME_OVER);	break;
 			case 2: Screen.iMenu =  Screen.MENU_GAMEOVER; 	return Values.GAME_OVER;

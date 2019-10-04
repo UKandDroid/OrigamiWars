@@ -2,13 +2,11 @@ package com.BreakthroughGames.OrigamiWars;
 
 import javax.microedition.khronos.opengles.GL10;
 
-public class Adventure extends Game
-{
+public class Adventure extends Game {
 	protected static HUD gameHUD;													// Show HUD statistics during game and level end
 
-	Adventure(){}
-	Adventure(GL10 glRef)
-	{ 
+	public Adventure(){}
+	Adventure(GL10 glRef) {
 		super(glRef); 
 		for(int i=0; i < MAX_OBJECTS; i++) object[i] = new Object();					// Initilize Objects
 		for(int i=0; i < Weapon.MAX_SHOTS; i++)	fire[i] = new Weapon();					// Initilize weapons + ShockWave		

@@ -1,8 +1,19 @@
-package com.BreakthroughGames.OrigamiWars;
+package com.BreakthroughGames.OrigamiWars.stages;
 
 import javax.microedition.khronos.opengles.GL10;
 
+import com.BreakthroughGames.OrigamiWars.Adventure;
+import com.BreakthroughGames.OrigamiWars.Draw;
+import com.BreakthroughGames.OrigamiWars.EnemyFire;
+import com.BreakthroughGames.OrigamiWars.Events;
+import com.BreakthroughGames.OrigamiWars.HUD;
+import com.BreakthroughGames.OrigamiWars.Player;
+import com.BreakthroughGames.OrigamiWars.Pref;
 import com.BreakthroughGames.OrigamiWars.R;
+import com.BreakthroughGames.OrigamiWars.Screen;
+import com.BreakthroughGames.OrigamiWars.Sound;
+import com.BreakthroughGames.OrigamiWars.SoundPlayer;
+import com.BreakthroughGames.OrigamiWars.Values;
 
 public class Stage2_2 extends Adventure
 {
@@ -64,7 +75,7 @@ public class Stage2_2 extends Adventure
 		HUD.showStats();												// Show Stats HUD - Life, weapon, fire etc
 		switch(events.iTimer)
 			{	
-			case 2:	events.dispatch(Events.STAGE2_LEVEL2);  break; 				// level 2 Start  
+			case 2:	events.dispatch(Events.STAGE2_LEVEL2);  break; 				// level 2 Start
 			}
 		events.draw();
 	}
@@ -106,7 +117,7 @@ public class Stage2_2 extends Adventure
 ***********************************************************************************************************************/
 	public void drawBackgrounds()
 	{																			// Draw Sky & Back Mountains
-		Draw.transform(0.7f, 1, 0, 0);								// Draw Sky 
+		Draw.transform(0.7f, 1, 0, 0);								// Draw Sky
 		BG_Sky.draw();
 		
 		Draw.transform(0.5f, 1,0.8f,0);
@@ -129,7 +140,7 @@ public class Stage2_2 extends Adventure
 				{
 				case 0: iSequence++;	Pref.getSet(Pref.GAME_OVER);		break;
 				case 1:	iSequence++;	events.dispatch(Events.GAME_OVER);	break;
-				case 2: Screen.iMenu =  Screen.MENU_GAMEOVER; 	return Values.GAME_OVER; 		 	
+				case 2: Screen.iMenu =  Screen.MENU_GAMEOVER; 	return Values.GAME_OVER;
 				}
 		else if(!events.bEnable && enemyDestroyed == LEVEL_ENEMIES)	// Level Complete
 			switch(iSequence)

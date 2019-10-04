@@ -3,16 +3,15 @@ package com.BreakthroughGames.OrigamiWars;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-public class Pref 
-{
+public class Pref {
 	
 	protected static final int STORY_NEW      = 0;
 	protected static final int LEVEL_RESUME   = 1;
 	protected static final int LEVEL_COMPLETE = 2;
 	protected static final int LEVEL_RESTART  = 3;
 	protected static final int GAME_EXIT   	  = 4;
-	protected static final int GAME_OVER      = 5;
-	protected static final int ARCADE_NEW     = 6;
+	public static final int GAME_OVER      = 5;
+	public static final int ARCADE_NEW     = 6;
 	protected static final int ARCADE_SAVE    = 7;
 				
 	protected static final String PREF_EVENTS  	 = "pEvents"; 
@@ -38,8 +37,7 @@ public class Pref
 /************************************************************************************************************************
 *	METHOD -- Loads and saves and Updates game Stats in Android Prefers for story mode
 ************************************************************************************************************************/
-	protected static void getSet(int vType)
-	{
+	public static void getSet(int vType) {
 		
 		if(Game.iMode == Values.ARCADE_MODE || Game.iMode == Values.ARCADE_RESUME)
 			prefArcade(vType);

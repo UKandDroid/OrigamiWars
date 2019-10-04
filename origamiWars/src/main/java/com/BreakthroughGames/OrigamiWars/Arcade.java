@@ -2,8 +2,7 @@ package com.BreakthroughGames.OrigamiWars;
 
 import javax.microedition.khronos.opengles.GL10;
 
-public class Arcade extends Game
-{
+public class Arcade extends Game {
 	// call Sequence for New Game	: loadingScreen() -> LoadLevel(){ loadObstacles() ResumeLevel(){ loadTextures()}}
 	// call Sequence for Resume Game: ResumeLevel(){ loadTextures()}
 
@@ -14,13 +13,13 @@ public class Arcade extends Game
 	private static final int MIN_ENEMY_DIFF = 8;
 	private static final int MAX_ENEMY_DIFF = 48;
 	private static int MAX_Enemy_Diff = MIN_ENEMY_DIFF;									//  Total power on enemies on screen,
-	static BackgroundArcade BG_HD_Front = new BackgroundArcade();
-	static BackgroundArcade BG_HD_Middle = new BackgroundArcade();
-	static BackgroundArcade BG_HD_Sky = new BackgroundArcade();
-	static BackgroundArcade BG_HD_Cloud = new BackgroundArcade();
+	static protected BackgroundArcade BG_HD_Front = new BackgroundArcade();
+	static protected BackgroundArcade BG_HD_Middle = new BackgroundArcade();
+	static protected BackgroundArcade BG_HD_Sky = new BackgroundArcade();
+	static protected BackgroundArcade BG_HD_Cloud = new BackgroundArcade();
 
 
-	Arcade(){}
+	public Arcade(){}
 	Arcade(GL10 glRef)
 	{
 		super(glRef);

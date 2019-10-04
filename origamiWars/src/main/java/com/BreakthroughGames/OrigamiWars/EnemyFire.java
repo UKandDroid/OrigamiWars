@@ -1,12 +1,11 @@
 package com.BreakthroughGames.OrigamiWars;
 
-public class EnemyFire extends Base
-{			
-	protected static final int SHOT_NONE    = 0;
-	protected static final int SHOT_Small   = 1;
-	protected static final int SHOT_Medium  = 2;
-	protected static final int SHOT_PetSFire = 4;
-	protected static final int SHOT_DragFire= 8;
+public class EnemyFire extends Base {
+	public static final int SHOT_NONE    = 0;
+	public static final int SHOT_Small   = 1;
+	public static final int SHOT_Medium  = 2;
+	public static final int SHOT_PetSFire = 4;
+	public static final int SHOT_DragFire= 8;
 	
 	protected static final int ROUND_COMPLETE = 1;											// Fire Reload Event, Enemy Screen round complete
 	protected static final int FIRE_DISMISS   = 2;											// Fire Dismissed, hit Plane or out of screen
@@ -18,22 +17,22 @@ public class EnemyFire extends Base
 	protected static final int STATUS_Smoke   = 8;											// Shot is smoking
 	protected static final int STATUS_ACTIVE  = 12;
 
-	protected static final int FIRE_Once     = 1;											// fire 1st time only
-	protected static final int FIRE_Twice    = 2;											// fire two times
-	protected static final int FIRE_2ndTime  = 4;											// fire 2nd time 
-	protected static final int FIRE_Always   = 8;											// fire always
+	public static final int FIRE_Once     = 1;											// fire 1st time only
+	public static final int FIRE_Twice    = 2;											// fire two times
+	public static final int FIRE_2ndTime  = 4;											// fire 2nd time
+	public static final int FIRE_Always   = 8;											// fire always
 	
-	protected static final int PATH_INTERCEPT_SLOW 	= 1;									// Fires where plane is when distance is reached
-	protected static final int PATH_INTERCEPT_MED  	= 2;
-	protected static final int PATH_INTERCEPT_FAST 	= 3;
+	public static final int PATH_INTERCEPT_SLOW 	= 1;									// Fires where plane is when distance is reached
+	public static final int PATH_INTERCEPT_MED  	= 2;
+	public static final int PATH_INTERCEPT_FAST 	= 3;
 
 	protected static final int PATH_INLINE_SLOW 	= 4;									// Fires straight when plane is inline with the enemy
-	protected static final int PATH_INLINE_MED 	  	= 5;						
-	protected static final int PATH_INLINE_FAST 	= 6;
-	protected static final int PATH_STRAIGHT_SLOW  	= 7;									// Fires straight when distance is reached
-	protected static final int PATH_STRAIGHT_MED   	= 8;						
-	protected static final int PATH_STRAIGHT_FAST  	= 9;						
-	protected static final int PATH_INTERCEPT_BACK 	= 10;
+	public static final int PATH_INLINE_MED 	  	= 5;
+	public static final int PATH_INLINE_FAST 	= 6;
+	public static final int PATH_STRAIGHT_SLOW  	= 7;									// Fires straight when distance is reached
+	public static final int PATH_STRAIGHT_MED   	= 8;
+	public static final int PATH_STRAIGHT_FAST  	= 9;
+	public static final int PATH_INTERCEPT_BACK 	= 10;
 			
 /*************************************************************************************************************************************************************************
  * --------------------------------------------END CONSTANTS DECLARATION-------------------------------------------------------------------------------------------------

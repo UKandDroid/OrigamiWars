@@ -34,7 +34,7 @@ public class Object extends Base
 	protected void moveShot() { if((enemyFire.iStatus & EnemyFire.STATUS_ACTIVE) > 0) enemyFire.move(); }
 	protected void createFire(int vShot, int vPath, int vFreq) { bFires = true;	enemyFire.create(vShot, vPath, vFreq, iType); }
 	protected void createFire(int vShot, int vPath, int vFreq, float vDistX) { bFires = true;	enemyFire.create(vShot, vPath, vFreq, iType, vDistX); }
-	protected void create(int vType, int vPath, float vPos, float vDist ) { enemyFire.iType = EnemyFire.SHOT_NONE; iTexture = Values.ARR_TEXTURES[vType]; iSprite = Values.ARR_SPRITES[vType]; iType = vType; iPath = vPath; position = vPos; distance = vDist; reset(); }
+	public void create(int vType, int vPath, float vPos, float vDist ) { enemyFire.iType = EnemyFire.SHOT_NONE; iTexture = Values.ARR_TEXTURES[vType]; iSprite = Values.ARR_SPRITES[vType]; iType = vType; iPath = vPath; position = vPos; distance = vDist; reset(); }
 	protected void create(int vType, int vPath ) { enemyFire.iType = EnemyFire.SHOT_NONE; iTexture = Values.ARR_TEXTURES[vType]; iSprite = Values.ARR_SPRITES[vType];  iType = vType; iPath = vPath; reset();  }
 	void reset() {
 		iObstCount = 0;
