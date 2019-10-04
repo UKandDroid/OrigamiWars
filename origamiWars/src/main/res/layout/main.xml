@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <ImageView
+        android:id="@+id/mainMenuImage"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:src="@drawable/menu_screen" >
+    </ImageView>
+
+    <TableLayout
+        android:id="@+id/buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:orientation="horizontal" >
+
+    </TableLayout>
+      
+     <ImageButton
+         android:id="@+id/btnStart"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_above="@+id/btnContinue"
+         android:layout_alignParentLeft="true"
+         android:layout_marginLeft="41dp"
+         android:paddingBottom="30dip"
+         android:paddingLeft="20dip"
+         android:src="@drawable/script_btn_start" />
+
+     <ImageButton
+         android:id="@+id/btnExit"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentRight="true"
+         android:layout_alignParentTop="true"
+         android:paddingBottom="20dip"
+          android:src="@drawable/script_btn_exit" />
+
+     <ImageButton
+         android:id="@+id/btnContinue"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignParentBottom="true"
+         android:layout_toRightOf="@+id/btnStart"
+         android:paddingLeft="20dip"
+         android:src="@drawable/script_btn_continue" />
+
+  
+     <ImageButton
+         android:id="@+id/btnArcade"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_above="@+id/btnStart"
+         android:layout_alignParentLeft="true"
+         android:layout_marginBottom="27dp"
+         android:paddingBottom="30dip"
+         android:paddingLeft="20dip"
+         android:src="@drawable/script_btn_arcade" />
+
+     <ImageButton
+         android:id="@+id/btnTwitter"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_above="@+id/btnFaceBook"
+         android:layout_alignParentRight="true"
+         android:scaleType="center"
+         android:layout_marginBottom="-8dp"
+         android:src="@drawable/script_btn_twitter" />
+     
+     <ImageButton
+         android:id="@+id/btnFaceBook"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_above="@+id/buttons"
+         android:layout_alignParentRight="true"
+         android:src="@drawable/script_btn_facebook" />
+
+     
+</RelativeLayout>

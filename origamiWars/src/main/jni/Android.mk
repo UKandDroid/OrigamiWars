@@ -1,0 +1,10 @@
+LOCAL_PATH := $(call my-dir)
+ 
+include $(CLEAR_VARS)
+ 
+LOCAL_MODULE    := game
+LOCAL_CFLAGS    := -Wall -Wextra
+LOCAL_SRC_FILES :=  jni.cpp
+OPENGLES_DEF  := -DUSE_OPENGL_ES_1_1 -DGL_GLEXT_PROTOTYPES=1 -DUSE_FILE32API
+LOCAL_LDLIBS := -llog -lGLESv1_CM -lEGL
+include $(BUILD_SHARED_LIBRARY)

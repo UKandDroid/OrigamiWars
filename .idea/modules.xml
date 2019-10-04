@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/OrigamiWars.iml" filepath="$PROJECT_DIR$/OrigamiWars.iml" />
+      <module fileurl="file://$PROJECT_DIR$/origamiWars/origamiWars.iml" filepath="$PROJECT_DIR$/origamiWars/origamiWars.iml" />
+    </modules>
+  </component>
+</project>

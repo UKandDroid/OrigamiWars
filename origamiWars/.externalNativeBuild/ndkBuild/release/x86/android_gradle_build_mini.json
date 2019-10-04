@@ -1,0 +1,17 @@
+{
+  "buildFiles": [
+    "D:\\Android\\Projects\\BreakthroughGames\\OrigamiWars\\origamiWars\\src\\main\\jni\\Android.mk",
+    "D:\\Android\\Projects\\BreakthroughGames\\OrigamiWars\\origamiWars\\src\\main\\jni\\Application.mk"
+  ],
+  "cleanCommands": [
+    "C:\\Users\\ubaid\\AppData\\Local\\Android\\Sdk\\ndk-bundle\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dD:\\Android\\Projects\\BreakthroughGames\\OrigamiWars\\origamiWars\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dD:\\Android\\Projects\\BreakthroughGames\\OrigamiWars\\origamiWars\\src\\main\\jni\\Application.mk APP_ABI\u003dx86 NDK_ALL_ABIS\u003dx86 NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-16 NDK_OUT\u003dD:/Android/Projects/BreakthroughGames/OrigamiWars/origamiWars/build/intermediates/ndkBuild/release/obj NDK_LIBS_OUT\u003dD:\\Android\\Projects\\BreakthroughGames\\OrigamiWars\\origamiWars\\build\\intermediates\\ndkBuild\\release\\lib clean"
+  ],
+  "libraries": {
+    "game-release-x86": {
+      "artifactName": "game",
+      "buildCommand": "C:\\Users\\ubaid\\AppData\\Local\\Android\\Sdk\\ndk-bundle\\ndk-build.cmd NDK_PROJECT_PATH\u003dnull APP_BUILD_SCRIPT\u003dD:\\Android\\Projects\\BreakthroughGames\\OrigamiWars\\origamiWars\\src\\main\\jni\\Android.mk NDK_APPLICATION_MK\u003dD:\\Android\\Projects\\BreakthroughGames\\OrigamiWars\\origamiWars\\src\\main\\jni\\Application.mk APP_ABI\u003dx86 NDK_ALL_ABIS\u003dx86 NDK_DEBUG\u003d0 APP_PLATFORM\u003dandroid-16 NDK_OUT\u003dD:/Android/Projects/BreakthroughGames/OrigamiWars/origamiWars/build/intermediates/ndkBuild/release/obj NDK_LIBS_OUT\u003dD:\\Android\\Projects\\BreakthroughGames\\OrigamiWars\\origamiWars\\build\\intermediates\\ndkBuild\\release\\lib D:/Android/Projects/BreakthroughGames/OrigamiWars/origamiWars/build/intermediates/ndkBuild/release/obj/local/x86/libgame.so",
+      "abi": "x86",
+      "output": "D:\\Android\\Projects\\BreakthroughGames\\OrigamiWars\\origamiWars\\build\\intermediates\\ndkBuild\\release\\obj\\local\\x86\\libgame.so"
+    }
+  }
+}

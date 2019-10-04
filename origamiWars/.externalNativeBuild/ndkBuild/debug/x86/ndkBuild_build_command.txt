@@ -1,0 +1,17 @@
+Executable : C:\Users\ubaid\AppData\Local\Android\Sdk\ndk-bundle\ndk-build.cmd
+arguments : 
+NDK_PROJECT_PATH=null
+APP_BUILD_SCRIPT=D:\Android\Projects\BreakthroughGames\OrigamiWars\origamiWars\src\main\jni\Android.mk
+NDK_APPLICATION_MK=D:\Android\Projects\BreakthroughGames\OrigamiWars\origamiWars\src\main\jni\Application.mk
+APP_ABI=x86
+NDK_ALL_ABIS=x86
+NDK_DEBUG=1
+APP_PLATFORM=android-16
+NDK_OUT=D:/Android/Projects/BreakthroughGames/OrigamiWars/origamiWars/build/intermediates/ndkBuild/debug/obj
+NDK_LIBS_OUT=D:\Android\Projects\BreakthroughGames\OrigamiWars\origamiWars\build\intermediates\ndkBuild\debug\lib
+APP_SHORT_COMMANDS=false
+LOCAL_SHORT_COMMANDS=false
+-B
+-n
+jvmArgs : 
+
