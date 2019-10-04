@@ -5,7 +5,6 @@ import java.io.InputStream;
 
 import javax.microedition.khronos.opengles.GL10;
 
-import com.BreakthroughGames.OrigamiWars.R;
 import com.BreakthroughGames.OrigamiWars.utils.Flow;
 
 import android.graphics.Bitmap;
@@ -22,8 +21,8 @@ public class Texture {
 	private static int iNextTexture, iCurTexture;
 	private static Bitmap arrBitmap[] = new Bitmap[MAX_ASYNC_TEXTURE];
 	private static Background  arrAsyncBG[] =  new Background[MAX_ASYNC_TEXTURE];			// Pointer for Async texture BGs
-	private static int arrResIds[] = {0,0,0,0};												// Array for resource Ids
-	private static Flow loadTexture = new Flow();
+	private static int arrResIds[] = {0, 0, 0, 0};											// Array for resource Ids
+	private static Flow flowLoadTextures;
 
 	protected static final int SHEET_PSS 	 	 = R.drawable.sheet_pss;
 	public static final int STORY_START    		 = R.drawable.story_start;
@@ -47,11 +46,9 @@ public class Texture {
 	protected static final int BG_LEVEL_COMPLETE = R.drawable.bg_lvl_complete;
 
 	protected Texture() {
-		loadTexture.code(new Flow.Code() {
-			@Override
-			public void onAction(int iAction, boolean bSuccess, int iExtra, java.lang.Object data) {
-
-			}
+		flowLoadTextures = new Flow();
+		flowLoadTextures.code((Flow.Code) (iAction, bSuccess, iExtra, data) -> {
+			decodeBitmap(arrResIds[iAction]);
 		});
 	}
 	protected Texture(GL10 glRef) {
@@ -59,9 +56,9 @@ public class Texture {
 		gl = glRef;
 	}
 
-	public int loadTexture(int texture)	{ return iTexture = getTxtId( texture, GL10.GL_CLAMP_TO_EDGE);	}
+	public int loadTexture(int texture)	{ return iTexture = getTxtId( texture, GL10.GL_CLAMP_TO_EDGE); }
 	protected int loadTexture(int texture, int repeatOrClamp) { return iTexture =  getTxtId(texture, repeatOrClamp); }
-	protected static int getTxtId(int texture){ return getTxtId(texture, GL10.GL_CLAMP_TO_EDGE);}
+	protected static int getTxtId(int texture){ return getTxtId(texture, GL10.GL_CLAMP_TO_EDGE); }
 	protected static int getTxtId(int texture, int repeatOrClamp) {
 		InputStream imageStream = Game.refContext.getResources().openRawResource(texture);
 		Bitmap bitmap = null;
@@ -137,12 +134,8 @@ public class Texture {
 		for( int i = 0; i < MAX_ASYNC_TEXTURE; i++)
 			if(!bDecodingTxt && !bGenerateTxt && arrAsyncBG[i] != null){
 				bDecodingTxt = true;
-				final int temp = iCurTexture = i;
-				Thread thread = new Thread()		 {
-					@Override public void run() {
-						decodeBitmap(arrResIds[temp]);
-					}};
-				thread.start();
+				iCurTexture = i;
+				flowLoadTextures.run( iCurTexture, false);
 				break;
 			}
 

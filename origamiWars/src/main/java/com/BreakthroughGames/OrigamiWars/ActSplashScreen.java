@@ -1,7 +1,5 @@
 package com.BreakthroughGames.OrigamiWars;
 
-import com.BreakthroughGames.OrigamiWars.R;
-
 import android.app.Activity;
 import android.media.AudioManager;
 import android.os.Build;
@@ -44,12 +42,12 @@ public class ActSplashScreen extends Activity {
         /*Start the Game in a new thread and Handler and delay it for 2 seconds for splash screen*/
         new Handler().postDelayed(new Thread() {
             @Override
-            public void run() {                                                    //Create Intent to launch MainMenu
+            public void run() {                                                //Create Intent to launch MainMenu
                 Intent mainMenu = new Intent(ActSplashScreen.this, ActMainMenu.class);
-                startActivity(mainMenu);                            //Start MainMenu Activity
+                startActivity(mainMenu);                             //Start MainMenu Activity
                 finish();                                            //End Splash screen activity, so user cant come back to splash screen
-                overridePendingTransition(R.layout.fadein, R.layout.fadeout); // add the fade in and fade out effects
+                overridePendingTransition(R.layout.fadein, R.layout.fadeout);   // add the fade in and fade out effects
             }
-        }, Game.GAME_THREAD_DELAY);                            //End Handler
+        }, Game.GAME_THREAD_DELAY);
     }
 }

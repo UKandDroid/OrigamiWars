@@ -43,7 +43,7 @@ public class Flow {
     public static final int RESULT_CHANGE = 0; // called once all events are fired, and when events AND result change
     public static final int RESULT_UPDATE = 1; // called once all events are fired with true, and every time any event updates as long as events AND is true
     public static final int EVENT_UPDATE = 2;  // called every time an event is fired or changed
-    private boolean bRunning;
+    private boolean bRunning = true;
     protected HThread hThread;
     private static int iThreadCount = 0;
     private static final int LOG_LEVEL = 4;

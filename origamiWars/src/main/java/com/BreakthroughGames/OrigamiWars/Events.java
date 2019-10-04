@@ -3,6 +3,8 @@ package com.BreakthroughGames.OrigamiWars;
 import android.content.Context;
 import android.os.Vibrator;
 
+import com.BreakthroughGames.OrigamiWars.utils.Flow;
+
 public class Events extends Base {
     private class Event {
         public int iSound;
@@ -27,6 +29,7 @@ public class Events extends Base {
     }
 
     public int iTimer;                                                // Timer to sync event and other things
+    private Flow flowVibration = new Flow();
     private long startTime, endTime;
     protected static Vibrator vibrate;
     private int curEvent = -1, curEvePri = -1;
@@ -90,9 +93,7 @@ public class Events extends Base {
 
     public static Event aEvents[] = new Event[TOTAL_EVENTS];
 
-    Events(boolean bCreate) {
-    }
-
+    Events(boolean bCreate) { }
     Events() {
         super.setTextureSize(0, 1, txtLineWidth, 0);                        // By default set texture to one line of visible Texture width
         posX = 2;
@@ -101,6 +102,14 @@ public class Events extends Base {
         scaleY = 1;
         if (vibrate == null)
             vibrate = (Vibrator) Game.refContext.getSystemService(Context.VIBRATOR_SERVICE);
+
+        flowVibration.code((Flow.Code) (iAction, bSingle, iExtra, data) -> {
+                Event event = (Event)data;
+                if (bSingle)                         // its a single vibration
+                    vibrate.vibrate(event.aVibrate[0]);
+                else                                                  // Its a vibration pattern
+                    vibrate.vibrate(event.aVibrate, -1);       // Don't repeat
+        });
 
         //		  Event    ---  Priority,TimesRun ---- Time,Line,Pause --- overlap, Sound ---------------- Vibrate
 
@@ -206,15 +215,9 @@ public class Events extends Base {
         if (vEvent > LAST_GUI_EVENT) {                                        // Event Doesn't have any Text or GUI
             if (eve.iSound != -1)                                             // Play event sound
                 SoundPlayer.playSound(eve.iSound, eve.fOverlap);
-            if (vibrate != null && eve.aVibrate != null)                      // If event has a vibration then play it
-                new Thread() {
-                    public void run() {
-                        if (eve.aVibrate.length == 1)                         // its a single vibration
-                            vibrate.vibrate(eve.aVibrate[0]);
-                        else                                                  // Its a vibration pattern
-                            vibrate.vibrate(eve.aVibrate, -1);                    // Don't repeat vibration pattern
-                    }
-                }.start();
+            if (vibrate != null && eve.aVibrate != null) {                      // If event has a vibration then play it
+                flowVibration.run(0,  false,eve.aVibrate.length == 1,0, eve);
+            }
         } else if (eve.iTimesRun != 0 && eve.iPriority > curEvePri && Player.bEnable) {            // If Event has already run set number of times, don't run it
             if (eve.iTimesRun > 0)
                 eve.iTimesRun--;                        // If Event has set number of times, reduce one
