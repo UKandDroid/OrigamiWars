@@ -1,8 +1,7 @@
 package com.BreakthroughGames.OrigamiWars;
 
 
-public class Obstacle 
-{
+public class Obstacle {
 	protected static final int OLAP_X     = 0;								// Collision parameters
 	protected static final int OLAP_Y     = 1;
 	protected static final int CLOUD_TYPE = 2;
@@ -38,40 +37,35 @@ public class Obstacle
 /************************************************************************************************************************
  *   Class --  Cloud
 ***********************************************************************************************************************/
-	protected class Cloud extends Base 
-	{ 
+	protected class Cloud extends Base {
 		private float windDir = 0;
 		private float mVelX = 0.02f; 
 		private float mVelY = 0.06f;
 		private boolean bWave = true; 										// Move the blocks one after another
 		private float windSpeedX = 0, windSpeedY = 0;
 		
-		Cloud(float vPosX, float vPosY)
-		{
+		Cloud(float vPosX, float vPosY) {
 			bWave = true;
 			posX = vPosX;
 			posY = vPosY; 
 			offsetY = 0.15f; 
 			offsetX = 0.25f;
-			initilize();
+			initialize();
 		}
 		
-	public void draw() { oSprtie.draw(iTexture, iSprite); }
+	public void draw() { oSprite.draw(iTexture, iSprite); }
 /************************************************************************************************************************
 *	METHOD -- Resets Object
 ************************************************************************************************************************/
-	void initilize()
-	{
+	void initialize() {
 		bEnable = true; 
-		switch(iType)
-			{
+		switch(iType) {
 			case Obstacle.WHITE_CLOUDS:		iTexture = Game.txtObst.iTexture; iSprite = Game.ran.nextInt(3); 	windSpeedX = 0.012f; windSpeedY = 0.032f; break;
 			case Obstacle.DARK_CLOUDS: 		iTexture = Game.txtObst.iTexture; iSprite = Game.ran.nextInt(3)+3; 	windSpeedX = 0.007f; windSpeedY = 0.02f;  break;
 			case Obstacle.THUNDER_CLOUDS: 	iTexture = Game.txtObst.iTexture; iSprite = Game.ran.nextInt(3)+6; 	windSpeedX = 0.003f; windSpeedY = 0.01f;  break;
 			}
 		
-		switch(iPath)
-			{
+		switch(iPath) {
 			case Values.PATH_STRAIGHT_SLOW: speed = Values.SPEED3;		break;
 			case Values.PATH_STRAIGHT_FAST: speed = Values.SPEED5;		break;
 			case Values.PATH_SINE_WAVE:
@@ -84,10 +78,8 @@ public class Obstacle
 /************************************************************************************************************************
 *	METHOD -- Detects overlap and returns overlapping X-Y Co-ordinates
 ************************************************************************************************************************/
-	protected boolean detectOverlap(Base obj, float arrResult[])
-	{
-		if(bEnable && detectCollision(obj))
-			{
+	protected boolean detectOverlap(Base obj, float arrResult[]) {
+		if(bEnable && detectCollision(obj)) {
 			float x1 = Math.abs(obj.getTop() 	- getBottom());
 			float x2 = Math.abs(obj.getBottom() - getTop());
 			float y1 = Math.abs(obj.getLeft() 	- getRight());
@@ -112,32 +104,28 @@ public class Obstacle
 /************************************************************************************************************************
 *	METHOD -- Calculates Path
 ************************************************************************************************************************/
-	void calculatePath(boolean vbMove)
-	{
+	void calculatePath(boolean vbMove) {
 		if( Mic.bBlowing)
 			calcWind();
-		else switch(iPath)													// switch on attack type
-			{
+		else switch(iPath){													// switch on attack type
 			case Values.PATH_STRAIGHT_SLOW:
 			case Values.PATH_STRAIGHT_FAST: 	pathStationary();		break;
 			case Values.PATH_SINE_WAVE:			if(vbMove) calcSine();	break;
 			}	
 	}
 /************************************************************************************************************************
-*	METHOD -- Overriden Stationary path Method
+*	METHOD -- Overridden Stationary path Method
 ************************************************************************************************************************/
-	protected void pathStationary()
-	{
+	protected void pathStationary() {
 		if(posY < -1)	
 			bEnable = false;
 		else
 			posY -= speed*Game.SPEED_MULT;
 	}
 /************************************************************************************************************************
-*	METHOD -- Overriden Stationary path Method
+*	METHOD -- Overridden Stationary path Method
 ************************************************************************************************************************/
-	protected void pathAttack()
-	{
+	protected void pathAttack() {
 		if(posY < -1)	
 			bEnable = false;
 		else
@@ -147,14 +135,13 @@ public class Obstacle
 /************************************************************************************************************************
 *	METHOD -- Overridden calculate  Sine
 ************************************************************************************************************************/
-	protected void calcSine()
-	{
+	protected void calcSine() {
 		if(posY < -1)
 			 bEnable = false;												// Object should run once across the screen then gets disabled
 		else
 			posY -= posT*Game.SPEED_MULT;
 		
-			if(bWave){ var1 = posX; var2 = 0; bWave = false;}				// Var1 contains Wave osillation center postion
+			if(bWave){ var1 = posX; var2 = 0; bWave = false;}				// Var1 contains Wave oscillation center position
 			posX = (float) java.lang.Math.sin(var2);						// posX assigned Sin Value, Var1 contains PosX value	
 			posX *= var3;													// wavMagnify = Magnification factor
 			posX = (posX*Game.SPEED_MULT) + var1 ;							// lockOnPosX = X- axis offset
@@ -163,10 +150,9 @@ public class Obstacle
 /************************************************************************************************************************
 *	METHOD -- Overridden  Wind method
 ************************************************************************************************************************/	
-	private void calcWind()
-	{
+	private void calcWind() {
 		float curX, curY;
-		bWave = true;														// after wind has changed postions, set new wave oscillation point for sine wave
+		bWave = true;														// after wind has changed positions, set new wave oscillation point for sine wave
 
 		windDir += (Mic.eWindStatus == Mic.WIND_BLOWING && ran.nextFloat() > 0.25f) ? 0.07 : -0.07f;
 		windDir = Values.clamp(windDir, -1, 1);
@@ -214,8 +200,7 @@ public class Obstacle
 /************************************************************************************************************************
  *   METHOD- Set Every Block in the Obstacle
 ***********************************************************************************************************************/
-	protected void addBlocks(final float arr[][])
-	{
+	protected void addBlocks(final float arr[][]) {
 		Cloud cloud;
 		length = arr.length;												// Size of Obstacle in num of clouds
 		arClouds = new Cloud[length];
@@ -236,8 +221,7 @@ public class Obstacle
 /************************************************************************************************************************
  *   METHOD- Move Obstacle and draws them
 ***********************************************************************************************************************/
-	protected boolean move()
-	{
+	protected boolean move() {
 		Cloud cloud = arClouds[0];
 		if(cloud.iPath == Values.PATH_STRAIGHT_SLOW||cloud.iPath == Values.PATH_STRAIGHT_FAST)							// If path is stationary then move all blocks every time
 			index = length;						
@@ -265,8 +249,7 @@ public class Obstacle
 /************************************************************************************************************************
  *   METHOD- Copies, Enables Obstacle, and sets Obstacle Position
 ***********************************************************************************************************************/
-	protected Obstacle setObstacle( float offsetY, int vPath, int vObstType)
-	{
+	protected Obstacle setObstacle( float offsetY, int vPath, int vObstType) {
 		Cloud cloud;
 		Obstacle temp = new Obstacle();
 		float offsetX = 0, vMax = 0, vMin = 0, posDiff = 0;		
@@ -302,7 +285,7 @@ public class Obstacle
 		cloud = new Cloud(arClouds[0].posX+offsetX, arClouds[0].posY+offsetY);
 		cloud.iType = vObstType;											// Type Dark/White/Thunder Clouds
 		cloud.iPath = vPath;												// Sine/Stationary
-		cloud.initilize();													// Set variable for Path and type
+		cloud.initialize();													// Set variable for Path and type
 		temp.arClouds[0] = cloud;
 		temp.cloudLeft = temp.cloudRight = temp.cloudTop = temp.cloudBottom = cloud;
 		
@@ -311,7 +294,7 @@ public class Obstacle
 			cloud = temp.arClouds[i] = new Cloud(arClouds[i].posX+offsetX, arClouds[i].posY+offsetY);
 			cloud.iType = vObstType;										// Type Dark/White/Thunder Clouds
 			cloud.iPath = vPath;											// Sine/Stationary
-			cloud.initilize();												// Set variable for Path and type
+			cloud.initialize();												// Set variable for Path and type
 
 			if(cloud.getLeft()   <  temp.cloudLeft.getLeft() )    temp.cloudLeft   = cloud;   
 			if(cloud.getRight()  >  temp.cloudRight.getRight())   temp.cloudRight  = cloud;  

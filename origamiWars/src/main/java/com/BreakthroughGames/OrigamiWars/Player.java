@@ -2,8 +2,7 @@ package com.BreakthroughGames.OrigamiWars;
 
 import javax.microedition.khronos.opengles.GL10;
 
-public class Player extends Base
-{	
+public class Player extends Base {
 	private static final int ANIM_LENGTH = 35; 
 	protected static final float START_Y = 0.8f;						// Start Position for Y, Distance from Left 
 	protected static final float START_X = 2.0f;						// Start Position for X, Height 
@@ -73,8 +72,7 @@ public class Player extends Base
 									{8, 3, 15, 3}
 	};
 
-	public Player(GL10 gl)
-	{	
+	public Player(GL10 gl) {
 		bEnable = true;
 		offsetX = 0.40f;
 		offsetY = 0.0f;
@@ -87,10 +85,8 @@ public class Player extends Base
 /************************************************************************************************************************
  *   METHOD -- Draws Player Sprite from AnimationArray by checking plane action
 ************************************************************************************************************************/
-	private void animatePlane()
-	{	
-		if(eCurAction != eLastAction )
-			{
+	private void animatePlane() {
+		if(eCurAction != eLastAction ) {
 			switch(eCurAction)
 				{													 								
 				case ACTION_MOVE:		AnimAction = 0;		animIndex = 17;				break;
@@ -100,9 +96,7 @@ public class Player extends Base
 				case ACTION_CRUISE:  	AnimAction = 3;		animIndex = 0;				break;
 				}
 			eLastAction = eCurAction;
-			}
-		else switch(eCurAction)
-				{													 								
+			} else switch(eCurAction) {
 				case ACTION_MOVE: 	
 					float diffX = Screen.touchX - posX - TOUCH_OFFSET;	// plane should not come under finger i.e Offset		
 					int curIndex =  (bCollision ? ANIM_LENGTH/2 : (int)((17.5)+(diffX*4)));
@@ -125,13 +119,10 @@ public class Player extends Base
 /************************************************************************************************************************
  *   METHOD -- Calculates position of plane depending on action
 ************************************************************************************************************************/
-	protected float movePlayer()
-	{
+	protected float movePlayer() {
 		if(!bRolling && !bFalling) eCurAction = eAction;				// If plane is rolling or falling dont update till Action Complete
-		if(eCurAction != eLastAction )									// Set necessary init once for an Action
-			{
-			switch(eCurAction)
-				{
+		if(eCurAction != eLastAction ) {									// Set necessary init once for an Action
+			switch(eCurAction) {
 				case ACTION_MOVE :
 					 posT = dragCounter = 0; acelInc = vDivider = 1; 	// Reset player dragging, dragCounter = 0  
 				break;
@@ -158,8 +149,7 @@ public class Player extends Base
 				break; 
 				}
 			}
-		switch(eCurAction)
-			{
+		switch(eCurAction) {
 			case ACTION_CRUISE: 	action_cruise();	break;
 			case ACTION_MOVE:		action_move();		break;
 			case ACTION_ROLL_UP :	action_roll_up();	break;
@@ -188,17 +178,14 @@ public class Player extends Base
 /************************************************************************************************************************
  *   METHOD -- Player Life and Power Methods
 ************************************************************************************************************************/
-	protected void Damage(int vDamage)
-	{
+	protected void Damage(int vDamage) {
 		iPower -= vDamage;
 		if(iPower <= 0) reduceLife(1);
 	}
 	
 	
-	protected void reduceLife(int live)
-	{
-		if(!bFalling && !bSpawned)										// if plane is not alreading destroyed and falling or Just Spawned
-			{
+	protected void reduceLife(int live) {
+		if(!bFalling && !bSpawned)	{									// if plane is not already destroyed and falling or Just Spawned
 			iPower = Values.PLAYER_POWER;								// For new life set reset power
 			iLives-= live;
 			bFalling = true;
@@ -212,13 +199,11 @@ public class Player extends Base
 			}
 	}
 	
-	
-	protected void spawn()
-	{
+	protected void spawn() {
 			posY = START_Y;
 			bEnable = true;												// Enable player
 			bFalling = false;
-			bSpawned = true;											// Maked it Invincible, from everything for some time 											// Disable falling flag
+			bSpawned = true;											// Mark it Invincible, from everything for some time 											// Disable falling flag
 			bRolling = false;											// if level completes and player is rolling, reset flag
 			setInvincible(true, -1);									// Resets invincible time to Zero
 			setInvincible(true, 300);									// Set invincible for 160 frames
@@ -230,26 +215,21 @@ public class Player extends Base
  *   METHOD -- Sets and Reset Players invincibility, -1 resets invincible time
 ************************************************************************************************************************/
 
-	protected void setInvincible( boolean vEnable, int vTime)
-	{																
-		if(vEnable)
-			{
+	protected void setInvincible( boolean vEnable, int vTime) {
+		if(vEnable) {
 			if(vTime < 0)  iInvinCount = 0;								// -ve values to reset, invincible counter		
 			if(iInvinCount < 0)	iInvinCount  = 0;						// Invincible Counter could be -ve set it to zero then
 			iInvinCount += vTime;										// Stay invincible for #vFrames 
 			setTransparency(0.55f);
 			bInvincible = true;
-			}
-		else
-			{
+			} else {
 			bSpawned = bInvincible = false;
 			setTransparency(1.0f);
 			}
 	}
 
 	
-	protected void setCollStats( float vArrResult[])
-	{
+	protected void setCollStats( float vArrResult[]) {
 		bCollision = true;
 		arrCollision[Obstacle.CLOUD_TYPE] = vArrResult[Obstacle.CLOUD_TYPE];
 		arrCollision[Obstacle.OLAP_X] 	  = vArrResult[Obstacle.OLAP_X];
@@ -264,8 +244,7 @@ public class Player extends Base
 /************************************************************************************************************************
 *	METHODS - To calculate different plane actions
 ************************************************************************************************************************/
-	private	void action_move()
-	{
+	private	void action_move() {
 		float addX, addY;
 		float diffX = Screen.touchX - posX - TOUCH_OFFSET;									// plane should not come under finger i.e Offset		
 		float diffY = Screen.touchY - posY + TOUCH_OFFSET + ((Screen.touchY/Screen.DEV_MAX_Y)*0.4f);// increase offset towards right			
@@ -291,8 +270,7 @@ public class Player extends Base
 		posY += lastY = (lastY + addY) / 2;
 	}
 
-	private	void action_cruise()
-	{
+	private	void action_cruise() {
 		cruise.move();
 		posX = cruise.posX;
 		cruise.posY = 1.0f;																								// Keep Y-axis constant
@@ -303,9 +281,7 @@ public class Player extends Base
 		if(bCollision) calCollision(ACTION_CRUISE);
 	}
 
-
-	private void action_roll_up()
-	{
+	private void action_roll_up() {
 		switch(rollTimer--)
 			{
 			case 30:  bRolling = false; 		break;
@@ -315,9 +291,7 @@ public class Player extends Base
 		if(bCollision) calCollision(ACTION_ROLL_UP);
 	}
 
-
-	private void action_roll_down()
-	{
+	private void action_roll_down() {
 		switch(rollTimer--)
 			{
 			case 30:  bRolling = false; 		break;
@@ -331,8 +305,7 @@ public class Player extends Base
 /************************************************************************************************************************
 *	METHODS - Calculates collision result with clouds
 ************************************************************************************************************************/
-private void calCollision(int vAction)
-{
+private void calCollision(int vAction) {
 	float absX  = arrCollision[Obstacle.OLAP_ABS_X];
 	float absY  = arrCollision[Obstacle.OLAP_ABS_Y];
 	float diffX = arrCollision[Obstacle.OLAP_DIFF_X];
@@ -341,19 +314,16 @@ private void calCollision(int vAction)
 	absY = (absY > 1)? 1: absY;
 	float absOlap = Math.abs(absX*absY);
 
-	switch((int)arrCollision[Obstacle.CLOUD_TYPE])
-		{
+	switch((int)arrCollision[Obstacle.CLOUD_TYPE]) {
 		case Obstacle.WHITE_CLOUDS:
-			switch(vAction)
-				{
+			switch(vAction) {
 				case ACTION_MOVE:	acelInc -= 0.4*absOlap; if(acelInc < 0.8 ) acelInc = 0.8f;	break;
 				case ACTION_CRUISE: posT = posT/ (1+(0.5f*absOlap)); cruise.driftX = Values.SPEED1/(1+(6*absOlap));	break;						// slow crusing down
 				}
 		break;
 		case Obstacle.THUNDER_CLOUDS:
 		case Obstacle.DARK_CLOUDS:
-			switch(vAction)
-				{
+			switch(vAction) {
 				case ACTION_MOVE:	
 					acelInc -= 0.4*absOlap;
 					if(acelInc < 0.8 ) acelInc = 0.8f;

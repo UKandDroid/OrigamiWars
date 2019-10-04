@@ -1,9 +1,6 @@
 package com.BreakthroughGames.OrigamiWars;
 
-import android.util.Log;
-
-public class Object extends Base
-{
+public class Object extends Base {
 	protected int iPower = 0;
 	private boolean bFlash;																	// Used for Magic Scroll, flashing 
 	private boolean bLockedOn;																// Has the player locked on for Intercept by Enemy
@@ -121,8 +118,8 @@ public class Object extends Base
 			}
 			windBlowing();
 
-			if(iPath == Values.PATH_SINE_WAVE) 												// If path is sine wave, wave should start, where every blow ends
-			{ var2 = posX; var1 = 0; }														// var2 is the starting position of Wave
+			if(iPath == Values.PATH_SINE_WAVE){ 												// If path is sine wave, wave should start, where every blow ends
+				var2 = posX; var1 = 0; }														// var2 is the starting position of Wave
 		} else {
 			if(speed < defaultSpeed){ speed*= 1.07f; driftY *= 1.07f; }
 			switch(iPath){																	// switch on attack type
@@ -163,9 +160,9 @@ public class Object extends Base
 		if(getType() == Values.TYPE_ENEMY)												// If object is an enemy, then use burn sprites if
 			bBurnSprite = iPower <= (Values.ARR_POWER[iType]/2) ? 8 : 0 ;
 		// If flash Flag in not set, then Draw the Object
-		oSprtie.draw(iTexture, iSprite + bBurnSprite);
+		oSprite.draw(iTexture, iSprite + bBurnSprite);
 		if(bMarked)
-			oSprtie.draw(Game.txtPlaneFire.iTexture, 7);								// Draw cross mark on object, as its been marked
+			oSprite.draw(Game.txtPlaneFire.iTexture, 7);								// Draw cross mark on object, as its been marked
 	}
 	/************************************************************************************************************************
 	 *	METHOD -- Sprites and animation when object is destroyed and is falling down
@@ -181,13 +178,13 @@ public class Object extends Base
 				transform();
 
 				if(getType() == Values.TYPE_CURSE) {
-					if(posT > 26 )			oSprtie.draw(Game.txtPowUp.iTexture, 10);		// Draw 3rd curse sprite
-					else if(posT > 13)		oSprtie.draw(Game.txtPowUp.iTexture, 9);		// Draw 2nd curse sprite 
-					else					oSprtie.draw(Game.txtPowUp.iTexture, 8);		// Draw 1st curse sprite
+					if(posT > 26 )			oSprite.draw(Game.txtPowUp.iTexture, 10);		// Draw 3rd curse sprite
+					else if(posT > 13)		oSprite.draw(Game.txtPowUp.iTexture, 9);		// Draw 2nd curse sprite
+					else					oSprite.draw(Game.txtPowUp.iTexture, 8);		// Draw 1st curse sprite
 				} else {
-					if(posT > 26 )			oSprtie.draw(Game.txtPowUp.iTexture,  7);		// Draw 3rd magic sprite
-					else if(posT > 13)		oSprtie.draw(Game.txtPowUp.iTexture,  6);		// Draw 2nd magic sprite 
-					else					oSprtie.draw(Game.txtPowUp.iTexture,  5);		// Draw 1st magic sprite
+					if(posT > 26 )			oSprite.draw(Game.txtPowUp.iTexture,  7);		// Draw 3rd magic sprite
+					else if(posT > 13)		oSprite.draw(Game.txtPowUp.iTexture,  6);		// Draw 2nd magic sprite
+					else					oSprite.draw(Game.txtPowUp.iTexture,  5);		// Draw 1st magic sprite
 				}
 				if(posT > 40) 	bActive = bFalling = false;									// Disable the Curse Smoke
 				break;
@@ -198,16 +195,15 @@ public class Object extends Base
 					Game.enemyDestroyed++;													// Add to enemy destroyed counter
 				}
 				if(posX > Screen.DEV_MAX_X) {
-					if((enemyFire.iStatus&EnemyFire.STATUS_STANDBY) > 0)					// if destroyed enemy has fired a shot, don't create a new enemy yet
-					{
+					if((enemyFire.iStatus&EnemyFire.STATUS_STANDBY) > 0){					// if destroyed enemy has fired a shot, don't create a new enemy yet
 						bActive = bFalling = false;
 						Game.createEnemy(this);
 					}
 				} else {
 					transform();
-					if(posT < 15)		oSprtie.draw(vTxt, vSprite + 0);					// Draw 1st falling sprite
-					else if(posT < 30)	oSprtie.draw(vTxt, vSprite + 1);					// Draw 2nd falling sprite 
-					else				oSprtie.draw(vTxt, vSprite + 2);					// Draw 3rd falling sprite
+					if(posT < 15)		oSprite.draw(vTxt, vSprite + 0);					// Draw 1st falling sprite
+					else if(posT < 30)	oSprite.draw(vTxt, vSprite + 1);					// Draw 2nd falling sprite
+					else				oSprite.draw(vTxt, vSprite + 2);					// Draw 3rd falling sprite
 
 					posY -= Values.SPEED1 * 4 ;
 					posX =  posX + (Values.SPEED1 * (posT/3)) + 1/6 * (5f * (posT*posT));
@@ -225,8 +221,7 @@ public class Object extends Base
 		if(posY >= (Screen.DEV_MAX_Y - 2.0f))
 			posY-=  Values.SPEED2*Game.SPEED_MULT ;
 		else {
-			if(!bLockedOn)																	//Lock the target and calculate the slope to attack
-			{
+			if(!bLockedOn){																	//Lock the target and calculate the slope to attack
 				var2 = ((Player.posX+0.5f - posX) / (posY - Player.posY + 0.5f))*speed; 	// Calculate slope
 				if(Math.abs(var2) > speed) var2 = (var2 > 0) ? (speed) : -(speed);
 				bLockedOn = true ;															// Slope Calculated, target lock down
@@ -273,8 +268,7 @@ public class Object extends Base
 		if(posY > (Screen.DEV_MAX_Y - 2.0f))
 			posY -= Values.SPEED2 * Game.SPEED_MULT;
 		else {
-			if(!bLockedOn)
-			{
+			if(!bLockedOn){
 				var1 = ran.nextFloat() * (Screen.DEV_MAX_X - 1) + 0.2f;
 				var2 = (float) ((var1 - posX) / ((posY - Player.posY) / Values.SPEED1));
 				bLockedOn = true;
@@ -421,8 +415,7 @@ public class Object extends Base
 	 ************************************************************************************************************************/
 	protected boolean Damage(int damage) {
 		iPower -= damage;
-		if(iPower < 1)
-		{
+		if(iPower < 1) {
 			posT = 0 ;																		// Reset PosT in-case its used, counter for animation and creating new object
 			bEnable = false;
 			bFalling = true;
@@ -435,8 +428,7 @@ public class Object extends Base
 	 *	METHOD -- Object moves towards the player, as they are still and Player is moving towards them
 	 ************************************************************************************************************************/
 	protected void pathStationary() {
-		if(posY < -1)
-		{
+		if(posY < -1) {
 			bMarked = bActive = bEnable = false;
 		}
 
@@ -464,8 +456,7 @@ public class Object extends Base
 	protected int hitDamage(Weapon shot) {
 		float overLap = shot.iDamage;
 
-		if(featherX != 0)
-		{
+		if(featherX != 0) {
 			float firePos = (shot.posX - posX) + 0.5f;
 			float offset = firePos < 0.5f ? offsetX : 1-offsetX;
 			overLap = Math.abs(firePos-offset)/featherX;

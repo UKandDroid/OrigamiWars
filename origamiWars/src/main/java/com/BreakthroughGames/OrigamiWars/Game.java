@@ -10,8 +10,7 @@ import android.content.ServiceConnection;
 import android.util.Log;
 
 /*Game Engine*/
-public class Game
-{
+public class Game {
 	//Constants to be used in the game
 	static protected Intent intSound;
 	protected static int iMode = Values.START_ERROR;									// Default, will change when resources are loaded

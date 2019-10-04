@@ -1,8 +1,7 @@
 package com.BreakthroughGames.OrigamiWars;
 
 
-public class PathFinder 
-{
+public class PathFinder {
 	private static final int FRONT = 0;
 	private static final int FRONT2 = 1;
 	private static final int UP = 2;
@@ -37,8 +36,7 @@ public class PathFinder
 /************************************************************************************************************************
 ******DONOT TOUCH THIS METHOD*****	Finds path for object, checking all obstractions infront, up and below 
 ************************************************************************************************************************/
-	protected static void calculate(Obstacle vClouds[], Object vChar,  float oldX,  float oldY)
-	{
+	protected static void calculate(Obstacle vClouds[], Object vChar,  float oldX,  float oldY) {
 	
 		float charWidth  = 1.0f - (2*vChar.offsetY);
 		arrResult[0] = arrResult[1] = arrResult[2] = arrResult[3] = null; 
@@ -67,8 +65,7 @@ public class PathFinder
 			
 
 /*CHECK FOR FRONT OBJECT*/			
-			for (int i = 0; i < 2 && arrResult[i] != null; i++ )										
-				{
+			for (int i = 0; i < 2 && arrResult[i] != null; i++ ) {
 				curObj  = arrResult[i];
 				distBtw = getGap(curObj, vChar);
 				tSlope  = getSlope(curObj, vChar, arrSlope);
@@ -92,13 +89,12 @@ public class PathFinder
 
 	
 /*FIND EMPTY SPACE UP & DOWN */			
-			if(frontObj != null && !Mic.bBlowing)														// **CHECK ABOVE AND BELOW, if there is object at the front**															
-				{
+			if(frontObj != null && !Mic.bBlowing) {														// **CHECK ABOVE AND BELOW, if there is object at the front**
 				downObj = upObj = frontObj;
 
 				for(int i= 1; i < 4; i++ )arrResult[i] = null; 		
 
-				do{																						
+				do {
 					loopCounter--;																		
 					countUp = countDown = 0;	
 					
@@ -152,8 +148,7 @@ public class PathFinder
 /******************************************************************************************************************************************************************
  *		METHODS OverLapping Methods to check different Overlapping Scenarios  
 *******************************************************************************************************************************************************************/	
-	private static int objExtOlap(Base vObj, Obstacle[] vObstacles, float x1, float y1, float x2, float y2, Base arrRes[], int vIndex)
-	{																							
+	private static int objExtOlap(Base vObj, Obstacle[] vObstacles, float x1, float y1, float x2, float y2, Base arrRes[], int vIndex) {
 		int tCount = 0;
 		int cloudSize = 0;
 		Base cloud = null;
@@ -162,8 +157,7 @@ public class PathFinder
 		extObj = createExtObj(vObj, extObj, x1, y1, x2, y2);
 		
 		for(int i = 0; i < Adventure.MAX_ACTIVE_OBST; i++ ) 
-			if(vObstacles[i] != null && extObj.detectCollision(vObstacles[i]) )
-				{
+			if(vObstacles[i] != null && extObj.detectCollision(vObstacles[i]) ) {
 				cloudSize = vObstacles[i].length;
 				tObj = vObstacles[i].arClouds[0];
 
@@ -184,10 +178,9 @@ public class PathFinder
 		return tCount;																					// No overlapping found
 	}
 /******************************************************************************************************************************************************************
- *	Creates an extended object based on orignal Object   
+ *	Creates an extended object based on original Object
 *******************************************************************************************************************************************************************/
-	protected static Base createExtObj(Base vOrgObj, Base vExtObj, float top, float left, float bottom, float right )
-	{
+	protected static Base createExtObj(Base vOrgObj, Base vExtObj, float top, float left, float bottom, float right ) {
 		extObj.ID = vOrgObj.ID;
 		vExtObj.offsetX = (top - bottom)/2 + vOrgObj.offsetX;
 		vExtObj.offsetY = (left - right)/2 + vOrgObj.offsetY;
@@ -198,10 +191,9 @@ public class PathFinder
 
 	}
 /******************************************************************************************************************************************************************
- *	Detects collion of object with clouds and adjusts the object   
+ *	Detects collision of object with clouds and adjusts the object
 *******************************************************************************************************************************************************************/
-	static void detectCollision(Object obj, Obstacle[] vObstacles, float oldX, float oldY)
-	{
+	static void detectCollision(Object obj, Obstacle[] vObstacles, float oldX, float oldY) {
 		int cloudSize = 0;
 		boolean bCollision = false;
 		Obstacle.Cloud cloud = null;
@@ -241,10 +233,9 @@ public class PathFinder
 	}
 
 /******************************************************************************************************************************************************************
- *		Genric methods  
+ *		Generic methods
 *******************************************************************************************************************************************************************/	
-	private static float getGap(Base vObj1, Base vObj2)
-	{
+	private static float getGap(Base vObj1, Base vObj2) {
 		float xDiff, yDiff, widthObj1, heightObj1, widthObj2, heightObj2;
 		
 		heightObj1 = 0.5f - vObj1.offsetX;																// Half Height
@@ -265,8 +256,7 @@ public class PathFinder
 	}
 
 	
-	private static float getDistance(Base vObj1, Base vObj2)
-	{
+	private static float getDistance(Base vObj1, Base vObj2) {
 		float xDiff, yDiff;
 		
 		xDiff =  Math.abs(vObj1.posX - vObj2.posX);
@@ -276,8 +266,7 @@ public class PathFinder
 	}
 
 	
-	static float getSlope(Base vBVlock, Base vChar, int arrResult[])
-	{
+	static float getSlope(Base vBVlock, Base vChar, int arrResult[]) {
 		float deltaX = vBVlock.posX - vChar.posX ;
 		float deltaY = vBVlock.posY - vChar.posY ;
 		int quadrent = -1;
@@ -300,6 +289,5 @@ public class PathFinder
 	/************************************************************************************************************************
 	*	METHOD - Class End
 	************************************************************************************************************************/
-	
 	
 }

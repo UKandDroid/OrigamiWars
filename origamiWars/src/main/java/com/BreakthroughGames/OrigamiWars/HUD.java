@@ -27,7 +27,7 @@ public class HUD {
      *  METHOD -- Init method is called by Game::ResumeLevel to initlize textures once they are loaded
      ***********************************************************************************************************************/
     protected static void init(int vtLives, int vtWeapon, int vtMenu, int vtPSS) {
-        sprite = Base.oSprtie;
+        sprite = Base.oSprite;
         iconHudY = iconOrgY = Screen.CHAR_WIDTH / 1.1f;                    // Icons size
         iconHudX = iconOrgX = iconHudY * Screen.ASPECT_RATIO;
 
@@ -106,8 +106,7 @@ public class HUD {
 
         final int pssResult = oPSS.iCurResult;
 
-        if (oPSS.bIsCursed)                                                // If there is a curse
-        {
+        if (oPSS.bIsCursed) {                                               // If there is a curse
             Draw.transform(iconOrgX, iconOrgY, 0, 0);                    // Draw Clock
             float temTime = oPSS.iCurseTimer / (float) oPSS.iTotalTime;
 
@@ -129,8 +128,7 @@ public class HUD {
                 bFlash = !bFlash;            // Flip it after every 10 frames
         }
 
-        for (int i = 0; i < pssResult; i++)                                // Draw ticks and crosses based on wins/loses
-        {
+        for (int i = 0; i < pssResult; i++){                                // Draw ticks and crosses based on wins/loses
             Draw.transform(iconOrgX, iconOrgY, 0, 0.5f * (i + 1.5f));    // Draw Ticks
             sprite.draw(itxtPSS, 12);
         }

@@ -34,7 +34,7 @@ class Mic extends Thread {
     private static int iInstances = 0, noise = 0, calibCount = 0, iWindTimer = 0;		// Keep track, don't run more then one instances
 
     Mic(){ android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_URGENT_AUDIO);  }
-    protected static void calibrate()  	 	{  calibCount = 0;	  bCalibrate = true;  vMaxEMA = 0; 		SoundPlayer.setVolume(1.2f, 1.0f );	 Adventure.events.dispatch(Events.MIC_CALIBRATE); } // Short normal Calibration
+    protected static void calibrate() {  calibCount = 0;	  bCalibrate = true;  vMaxEMA = 0; 		SoundPlayer.setVolume(1.2f, 1.0f );	 Adventure.events.dispatch(Events.MIC_CALIBRATE); } // Short normal Calibration
 
     /************************************************************************************************************************
      *	METHOD -- Called when blow starts
@@ -44,8 +44,7 @@ class Mic extends Thread {
         SoundPlayer.playSound(Sound.BLOWING, -0.5f, 50);
         eWindStatus = WIND_BLOWING;
 
-        if(Values.bDebug)
-        {
+        if(Values.bDebug) {
             Message msg = new Message();
             msg.what = WIND_BLOWING;
             msg.arg1 = (int) ampEMA;

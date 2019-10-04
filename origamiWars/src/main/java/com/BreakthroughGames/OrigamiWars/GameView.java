@@ -21,8 +21,7 @@ import com.BreakthroughGames.OrigamiWars.story.StoryEnd;
 import com.BreakthroughGames.OrigamiWars.story.StoryMiddle;
 import com.BreakthroughGames.OrigamiWars.story.StoryStart;
 
-public class GameView extends GLSurfaceView implements Renderer					//Class to implement GL init and Rendering
-{ 			
+public class GameView extends GLSurfaceView implements Renderer	{				//Class to implement GL init and Rendering
 	private long startFPS, diff;
 	private Game curLevel = null;
 	protected int eGameStatus = -1;												// Current game Status
@@ -167,7 +166,6 @@ public class GameView extends GLSurfaceView implements Renderer					//Class to i
 
 			case Values.STORY_RESUME_PAUSE: 
 				Values.log("GameStats", "Game Loaded : Resuming Now");
-	//			level[0].loadingScreen();
 				level[0].resumeLevel();
 				eGameStatus = Values.GAME_LEVEL_RESUME;
 			break;
@@ -208,10 +206,5 @@ public class GameView extends GLSurfaceView implements Renderer					//Class to i
 					
 		loopStart = System.currentTimeMillis();
 	}
-/************************************************************************************************************************
-*	CLASS-END
-************************************************************************************************************************/
-
-
 
 }

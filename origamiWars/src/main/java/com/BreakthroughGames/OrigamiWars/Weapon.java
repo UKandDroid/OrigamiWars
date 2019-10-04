@@ -105,13 +105,13 @@ public class Weapon extends Base
 	{
 		if(bSmoke)																	// if bullet has hit something, draw smoke
 			{													
-			if(smokeCount++ < 15)	  oSprtie.draw(iTexture, iSmoke);
-			else if(smokeCount < 30)  oSprtie.draw(iTexture, iSmoke + 1);
-			else if(smokeCount < 45)  oSprtie.draw(iTexture, iSmoke + 2);
+			if(smokeCount++ < 15)	  oSprite.draw(iTexture, iSmoke);
+			else if(smokeCount < 30)  oSprite.draw(iTexture, iSmoke + 1);
+			else if(smokeCount < 45)  oSprite.draw(iTexture, iSmoke + 2);
 			else{				  	  bSmoke = false; smokeCount = 0; }
 			}
 		else
-			oSprtie.draw(iTexture, iSprite);
+			oSprite.draw(iTexture, iSprite);
 	}
 /************************************************************************************************************************
  *   METHOD- Moves shots
@@ -292,7 +292,7 @@ public class Weapon extends Base
 		limitInt = posT = incX = 0;
 		oldX = posX = Player.posX;
 		oldY = posY = Player.posY + 0.38f;
-		Object target = Adventure.oTarget; 
+		Object target = Adventure.oTarget;
 		incLimit = incY = SPEED_BULLET/1.1f;
 				
 		if(!target.bEnable)

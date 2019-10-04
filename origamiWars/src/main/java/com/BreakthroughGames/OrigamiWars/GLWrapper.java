@@ -16,6 +16,4 @@ public static native void transform( float transX, float transY);
 public static native void transform( float scaleX, float scaleY, float transX, float transY);
 public static native void transform( float scaleX, float scaleY, float transX, float transY, float rotateZ);
 public static native void draw( float transX, float transY, int iTexture, float opacity, float txtStartX, float txtStartY, float txtEndX, float txtEndY);
-
-
 }
