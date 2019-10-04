@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 19
+    compileSdkVersion 29
 
     defaultConfig {
         applicationId "com.BreakthroughGames.OrigamiWars"
         minSdkVersion 15
-        targetSdkVersion 19
+        targetSdkVersion 29
 
         ndk {
             moduleName "game"
@@ -26,6 +26,10 @@ android {
         ndkBuild {
             path 'src/main/jni/Android.mk'
         }
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
     }
 }
 

@@ -6,26 +6,28 @@ import java.io.InputStream;
 import javax.microedition.khronos.opengles.GL10;
 
 import com.BreakthroughGames.OrigamiWars.R;
+import com.BreakthroughGames.OrigamiWars.utils.Flow;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.opengl.GLUtils;
 
-public class Texture 
-{//Class to upload texture sprites
+public class Texture {
+	//Class to upload texture sprites
 	protected static GL10 gl;
 	public int iTexture = 0;
 	private static int[] textures = {0};
 	private static final int MAX_ASYNC_TEXTURE = 4;											// Async Textures Queue
 	private static boolean bGenerateTxt = false, bDecodingTxt = false;						// Generate texture once bitmap is decoded
-	private static int iNextTexture, iCurTexture;								 		
+	private static int iNextTexture, iCurTexture;
 	private static Bitmap arrBitmap[] = new Bitmap[MAX_ASYNC_TEXTURE];
-	private static Background  arrAsyncBG[] =  new Background[MAX_ASYNC_TEXTURE];			// Pointer for Async texture BGs  
+	private static Background  arrAsyncBG[] =  new Background[MAX_ASYNC_TEXTURE];			// Pointer for Async texture BGs
 	private static int arrResIds[] = {0,0,0,0};												// Array for resource Ids
+	private static Flow loadTexture = new Flow();
 
 	protected static final int SHEET_PSS 	 	 = R.drawable.sheet_pss;
-	public static final int STORY_START    	 = R.drawable.story_start;
-	protected static final int STORY_END   		 = R.drawable.story_end;
+	public static final int STORY_START    		 = R.drawable.story_start;
+	public static final int STORY_END   		 = R.drawable.story_end;
 	protected static final int SHEET_PLANE 		 = R.drawable.sheet_plane;
 	protected static final int SHEET_PUPS 		 = R.drawable.sheet_powerups;
 	protected static final int SHEET_CLOUDS 	 = R.drawable.sheet_clouds;
@@ -44,23 +46,31 @@ public class Texture
 	protected static final int SHEET_ENEMY_FIRE  = R.drawable.sheet_enemies_fire;
 	protected static final int BG_LEVEL_COMPLETE = R.drawable.bg_lvl_complete;
 
-	protected Texture() {  }
-	protected Texture(GL10 glRef) {  gl = glRef;	}
+	protected Texture() {
+		loadTexture.code(new Flow.Code() {
+			@Override
+			public void onAction(int iAction, boolean bSuccess, int iExtra, java.lang.Object data) {
+
+			}
+		});
+	}
+	protected Texture(GL10 glRef) {
+		super();
+		gl = glRef;
+	}
 
 	public int loadTexture(int texture)	{ return iTexture = getTxtId( texture, GL10.GL_CLAMP_TO_EDGE);	}
-	protected int loadTexture(int texture, int repeatOrClamp) { return iTexture =  getTxtId(texture, repeatOrClamp);	}
+	protected int loadTexture(int texture, int repeatOrClamp) { return iTexture =  getTxtId(texture, repeatOrClamp); }
 	protected static int getTxtId(int texture){ return getTxtId(texture, GL10.GL_CLAMP_TO_EDGE);}
-	protected static int getTxtId(int texture, int repeatOrClamp)
-	{
-		InputStream imagestream = Game.refContext.getResources().openRawResource(texture);
+	protected static int getTxtId(int texture, int repeatOrClamp) {
+		InputStream imageStream = Game.refContext.getResources().openRawResource(texture);
 		Bitmap bitmap = null;
-		try 
-		{ bitmap = BitmapFactory.decodeStream(imagestream);	}
-		catch(Exception e){}
-		finally{ try{
-			imagestream.close();
-			imagestream= null;
-		}catch(IOException e)	{}}	//Finally braces
+		try {
+			bitmap = BitmapFactory.decodeStream(imageStream);
+		} catch(Exception e){}
+		finally{ try {
+			imageStream.close();
+		} catch(IOException e)	{} }	//Finally braces
 
 		//Generate the texture once image is loaded
 		gl.glGenTextures(1, textures, 0);
@@ -91,14 +101,12 @@ public class Texture
 	 ************************************************************************************************************************/
 
 	private static void decodeBitmap(int resId){
-		InputStream imagestream = Game.refContext.getResources().openRawResource(resId);
-		try { 
-			arrBitmap[iCurTexture] = BitmapFactory.decodeStream(imagestream);	}
+		InputStream imageStream = Game.refContext.getResources().openRawResource(resId);
+		try {
+			arrBitmap[iCurTexture] = BitmapFactory.decodeStream(imageStream);	}
 		catch(Exception e){}
-		finally{ try{
-			imagestream.close();
-			imagestream= null;
-		}catch(IOException e)	{}}//Finally braces
+		finally { try { imageStream.close(); }catch(IOException e) {} }
+
 		bDecodingTxt = false;
 		bGenerateTxt = true;
 	}
@@ -120,7 +128,7 @@ public class Texture
 
 		arrAsyncBG[iCurTexture].iTexture  = textures[0];
 		arrAsyncBG[iCurTexture] = null;
-		bGenerateTxt = false; 
+		bGenerateTxt = false;
 	}
 	/************************************************************************************************************************
 	 *   METHOD - Checks if any texture needs to be loaded Asynchronously, by checking the queue
@@ -134,12 +142,12 @@ public class Texture
 					@Override public void run() {
 						decodeBitmap(arrResIds[temp]);
 					}};
-					thread.start();
-					break;
+				thread.start();
+				break;
 			}
 
 		if(bGenerateTxt){
-			generateTexture();	
+			generateTexture();
 		}
 	}
 

@@ -1,2 +1,5 @@
 .gradle/
 .idea/
+origamiWars/build/
+origamiWars/.externalNativeBuild/
+OrigamiWars.iml

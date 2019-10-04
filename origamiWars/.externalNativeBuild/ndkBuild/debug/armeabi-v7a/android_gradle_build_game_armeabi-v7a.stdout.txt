@@ -1,3 +1,0 @@
-[armeabi-v7a] Compile++ thumb: game <= jni.cpp
-[armeabi-v7a] StaticLibrary  : libstdc++.a
-[armeabi-v7a] SharedLibrary  : libgame.so
