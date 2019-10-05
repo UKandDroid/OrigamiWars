@@ -42,7 +42,7 @@ public class Events extends Base {
     public static final int SURVIVE = 1;                    // Event with GUI, Events Texture
     public static final int TOUCH_TO_MOVE = 2;
     public static final int TOUCH_TO_FIRE = 3;
-    public static final int BLOW_ON_SCREEN = 4;
+    public static final int UNUSED_1 = 4;
     public static final int FLICK_TO_ROLL = 5;
     public static final int FLICK_TO_SWAVE = 6;
     protected static final int SWITCH_WEAPON = 7;
@@ -105,9 +105,9 @@ public class Events extends Base {
 
         flowVibration.code((Flow.Code) (iAction, bSingle, iExtra, data) -> {
             Event event = (Event)data;
-            if (bSingle) {                         // its a single vibration
+            if (bSingle) {                                        // its a single vibration
                 vibrate.vibrate(event.aVibrate[0]);
-            } else {                                                  // Its a vibration pattern
+            } else {                                              // Its a vibration pattern
                 vibrate.vibrate(event.aVibrate, -1);       // Don't repeat
             }
         });
@@ -117,7 +117,7 @@ public class Events extends Base {
         arrEvents[SURVIVE] =        new Event(1, -1, 1, 1, false, 0, -1, null);
         arrEvents[TOUCH_TO_MOVE] =  new Event(2, 1, 3, 2, true, 0, Sound.VOICE_MOVE, null);
         arrEvents[TOUCH_TO_FIRE] =  new Event(2, 1, 3, 3, true, 0, Sound.VOICE_FIRE, null);
-        arrEvents[BLOW_ON_SCREEN] = new Event(0, 0, 0, 0, false, 0, -1, null);
+        arrEvents[UNUSED_1]      =  new Event(0, 0, 0, 0, false, 0, -1, null);
         arrEvents[FLICK_TO_ROLL] =  new Event(2, 1, 3, 5, true, 0, Sound.VOICE_ROLL, null);
         arrEvents[FLICK_TO_SWAVE] = new Event(2, 1, 3, 6, false, 0, Sound.VOICE_SWAVE, null);
         arrEvents[SWITCH_WEAPON] =  new Event(1, 1, 3, 7, true, 0, Sound.VOICE_WEAPON, null);
@@ -128,7 +128,7 @@ public class Events extends Base {
         arrEvents[MAX_DISTANCE] =   new Event(0, -1, 2, 12, false, 0, Sound.NEW_RECORD, null);
         arrEvents[SCORE] =          new Event(2, -1, 1, 13, false, 0, -1, null);
         arrEvents[EMPTY_14] =       new Event(0, -1, 1, 14, false, 0, -1, null);
-        arrEvents[PROXIMITY_ALERT] =new Event(2, 1, 1, 15, false, 0, Sound.ALERT, null);
+        arrEvents[PROXIMITY_ALERT]= new Event(2, 1, 1, 15, false, 0, Sound.ALERT, null);
         arrEvents[SAVE_ORIGAMIS] =  new Event(0, -1, 3, 16, false, 0, -1, null);
         arrEvents[HIGHEST_SCORE] =  new Event(0, -1, 2, 17, false, 0, Sound.NEW_RECORD, null);
         arrEvents[WEAPON_EMPTY] =   new Event(0, -1, 1, 18, false, 0, Sound.WEAPON_EMPTY, null);
