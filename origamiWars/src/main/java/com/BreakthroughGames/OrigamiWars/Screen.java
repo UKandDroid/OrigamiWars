@@ -2,7 +2,6 @@ package com.BreakthroughGames.OrigamiWars;
 
 import android.app.Activity;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 
@@ -42,8 +41,8 @@ public class Screen {
 	private static float arrPosY[] = {0,0,0,0};
 	private static float posX[] = {0,0,0,0}, posY[]= {0,0,0,0};
 
-	private   static int event;
-	private   static Base oTap = Adventure.oTap;
+	private  static int event;
+	private static Base oTap = Adventure.fingerTap;
 	public static int iMenu = MENU_OFF;
 	private   static float PIXELS_X = -1, PIXELS_Y = -1;							// Screen X-Res, Y-Res and Middle
 	public static float ASPECT_RATIO = 1;
@@ -92,7 +91,7 @@ public class Screen {
 		}
 
 		Initialize.check(e);															// Set diff Flags
-	//	Initialize.log();
+		//	Initialize.log();
 		Menu.check(e);																	// Check Menu
 		if(!bMenu) {
 			PlaneAction.check(e);														// Check Plane actions
@@ -120,7 +119,7 @@ public class Screen {
 
 			if(event == ACTION_UP) {
 				leftFingerId = rightFingerId = -1;
-			//	Values.log("screen","Fingers Reset");
+				//	Values.log("screen","Fingers Reset");
 			}
 
 			if( !bMenu) {
@@ -128,10 +127,12 @@ public class Screen {
 					Game.tapTimer = 0;
 
 				if(event == ACTION_UP || event == ACTION_2ND_UP) {
-					oTap.posT = 0;                                                                  // Reset counter
-					oTap.bEnable = true;												            // Touch2 or tap is not finger associated with fire or movement
-					oTap.posX = getGLX(e.getX(curIndex)) - 0.5f;							        // center of object created
-					oTap.posY = getGLY(e.getY(curIndex)) - 0.6f;
+					if(Values.bShowFingerTap){
+						oTap.posT = 0;                                                                  // Reset counter
+						oTap.bEnable = true;												            // Touch2 or tap is not finger associated with fire or movement
+						oTap.posX = getGLX(e.getX(curIndex)) - 0.5f;							        // center of object created
+						oTap.posY = getGLY(e.getY(curIndex)) - 0.5f;
+					}
 				}
 			}
 
@@ -141,20 +142,20 @@ public class Screen {
 		private static void log(){
 			switch(event) {
 				case  ACTION_UP:
-				//	Values.log("screen"," EVENT: 1ST_UP   index = "+curIndex +" count = "+ finCount + " leftId = "+ leftFingerId + " rightId = " + rightFingerId +" EventLeft = "+eLeft+" fin "+indxLeft+",   EventRight = "+eRight+" fin "+ indxRight);
+					//	Values.log("screen"," EVENT: 1ST_UP   index = "+curIndex +" count = "+ finCount + " leftId = "+ leftFingerId + " rightId = " + rightFingerId +" EventLeft = "+eLeft+" fin "+indxLeft+",   EventRight = "+eRight+" fin "+ indxRight);
 					break;
 
 
 				case  ACTION_DOWN:
-				//	Values.log("screen"," EVENT: 1ST_DOWN index = "+curIndex +" count = "+ finCount + " leftId = "+ leftFingerId + " rightId = " + rightFingerId +" EventLeft = "+eLeft+" fin "+indxLeft+",   EventRight = "+eRight+" fin "+ indxRight);
+					//	Values.log("screen"," EVENT: 1ST_DOWN index = "+curIndex +" count = "+ finCount + " leftId = "+ leftFingerId + " rightId = " + rightFingerId +" EventLeft = "+eLeft+" fin "+indxLeft+",   EventRight = "+eRight+" fin "+ indxRight);
 					break;
 
-                case ACTION_2ND_UP:
-                    Values.log("screen"," EVENT: 2ND_UP   index = "+curIndex +" count = "+ finCount + " leftId = "+ leftFingerId + " rightId = " + rightFingerId +" EventLeft = "+eLeft+" fin "+indxLeft+",   Tap = "+oTap.bEnable);
-                    break;
+				case ACTION_2ND_UP:
+					Values.log("screen"," EVENT: 2ND_UP   index = "+curIndex +" count = "+ finCount + " leftId = "+ leftFingerId + " rightId = " + rightFingerId +" EventLeft = "+eLeft+" fin "+indxLeft+",   Tap = "+oTap.bEnable);
+					break;
 
-                case  ACTION_2ND_DOWN:
-				//	Values.log("screen"," EVENT: 2ND_DOWN index = "+curIndex +" count = "+ finCount + " leftId = "+ leftFingerId + " rightId = " + rightFingerId +" EventLeft = "+eLeft+" fin "+indxLeft+",   Tap = "+oTap.bEnable);
+				case  ACTION_2ND_DOWN:
+					//	Values.log("screen"," EVENT: 2ND_DOWN index = "+curIndex +" count = "+ finCount + " leftId = "+ leftFingerId + " rightId = " + rightFingerId +" EventLeft = "+eLeft+" fin "+indxLeft+",   Tap = "+fingerTap.bEnable);
 					break;
 
 				//case  ACTION_MOVE: 		strLog ="MOVE    "; break;
@@ -190,7 +191,7 @@ public class Screen {
 						endX = posX[indxLeft];
 						endY = posY[indxLeft];
 						if(gestureSWnRoll())
-                            oTap.bEnable = false;
+							oTap.bEnable = false;
 						else Player.eAction = Player.ACTION_CRUISE;
 						break;
 					case ACTION_MOVE:
@@ -231,8 +232,8 @@ public class Screen {
 					oTap.bEnable = false;		// Return that gesture has been registered
 				} else if(ratioSW > 0.9f){													// Check for ShockWave
 					bShockWave = true;
-                    oTap.bEnable = false;
-                }						// Return that gesture has been registered
+					oTap.bEnable = false;
+				}						// Return that gesture has been registered
 			}
 
 			return false;																	// No Gesture Registered
@@ -350,37 +351,37 @@ public class Screen {
 	protected static void init(Activity activity ) {
 
 
-        int width = 0, height = 0;
-        Display display = activity.getWindowManager().getDefaultDisplay();
-        final DisplayMetrics metrics = new DisplayMetrics();
-        Method mGetRawH = null, mGetRawW = null;
+		int width = 0, height = 0;
+		Display display = activity.getWindowManager().getDefaultDisplay();
+		final DisplayMetrics metrics = new DisplayMetrics();
+		Method mGetRawH = null, mGetRawW = null;
 
-        try {
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1) {
-                display.getRealMetrics(metrics);
+		try {
+			if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN_MR1) {
+				display.getRealMetrics(metrics);
 
-                width = metrics.widthPixels;
-                height = metrics.heightPixels;
-            } else {
-                mGetRawH = Display.class.getMethod("getRawHeight");
-                mGetRawW = Display.class.getMethod("getRawWidth");
+				width = metrics.widthPixels;
+				height = metrics.heightPixels;
+			} else {
+				mGetRawH = Display.class.getMethod("getRawHeight");
+				mGetRawW = Display.class.getMethod("getRawWidth");
 
-                try {
-                    width = (Integer) mGetRawW.invoke(display);
-                    height = (Integer) mGetRawH.invoke(display);
-                } catch (IllegalArgumentException e) { e.printStackTrace();
-                } catch (IllegalAccessException e) { e.printStackTrace();
-                } catch (InvocationTargetException e) {e.printStackTrace();
-                }
-            }
-        } catch (NoSuchMethodException e3) { e3.printStackTrace();}
+				try {
+					width = (Integer) mGetRawW.invoke(display);
+					height = (Integer) mGetRawH.invoke(display);
+				} catch (IllegalArgumentException e) { e.printStackTrace();
+				} catch (IllegalAccessException e) { e.printStackTrace();
+				} catch (InvocationTargetException e) {e.printStackTrace();
+				}
+			}
+		} catch (NoSuchMethodException e3) { e3.printStackTrace();}
 
-        if(width == 0 || height == 0){
-            DisplayMetrics dsp;
-            dsp = activity.getResources().getDisplayMetrics();
-            width = dsp.widthPixels;
-            height = dsp.heightPixels;
-        }
+		if(width == 0 || height == 0){
+			DisplayMetrics dsp;
+			dsp = activity.getResources().getDisplayMetrics();
+			width = dsp.widthPixels;
+			height = dsp.heightPixels;
+		}
 
 		PIXELS_X = width;
 		PIXELS_Y = height;

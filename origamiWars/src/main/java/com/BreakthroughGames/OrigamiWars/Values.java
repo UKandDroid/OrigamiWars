@@ -2,7 +2,7 @@ package com.BreakthroughGames.OrigamiWars;
 
 public class Values {
 	protected static boolean bDebug = BuildConfig.DEBUG;							// Enable App Logging, Disable for Released Version
-
+	protected static boolean bShowFingerTap = false;
 	public static float BASIC_SPEED = 0.2f/Game.GAME_FPS;				// Standard Speed 0.2f/60 = 0.0033 f			
 	public static float SCROLL_SPEED = BASIC_SPEED;						// BGs Scroll speed
 	public static float SPEED1 = BASIC_SPEED * 3.5f;					// 0.01167 f

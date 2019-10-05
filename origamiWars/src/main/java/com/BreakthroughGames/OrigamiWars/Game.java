@@ -6,7 +6,6 @@ import javax.microedition.khronos.opengles.GL10;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.util.Log;
 
 /*Game Engine*/
@@ -45,7 +44,7 @@ public class Game {
 	protected static int enemyDestroyed = 0;
 	protected static boolean bSecond = false;											// ticks(true) every 60 frames
 	protected static Random ran = new Random(); 										// Variable to generate random numbers
-	protected static Object oTap = new Object();										// Object contains tap on the screen coordinates
+	protected static Object fingerTap = new Object();										// Object contains tap on the screen coordinates
 	protected static Object oTarget = new Object();										// Ptr to object that's been targeted
 	protected static Base planeExt = new Base();										// Extended object not to mark objects near plane
 	protected static int iLevel = -1, iStartLevel = 0;
@@ -164,9 +163,9 @@ public class Game {
 
 		tapTimer++;																	    // Used to check time for Marking Object
 
-		if(Values.bDebug && oTap.bEnable) {												// Show Tap point in Debug Mode
-            oTap.transform();
-			oTap.draw();
+		if(Values.bDebug && fingerTap.bEnable) {												// Show Tap point in Debug Mode
+            fingerTap.transform();
+			fingerTap.draw();
             iDebugTap++;
         }
 
@@ -199,7 +198,7 @@ public class Game {
 							if((obj.getType()&Values.TYPE_WIND_STABLE) == 0 && bActObst)    // For magic, curse and scrolls dont find path
 								PathFinder.calculate(actObstacles, obj, oldX, oldY);	    // Find path between obstacles
 							if(Player.bEnable) obj.fireShot();							    // Check for objects fire
-							if(oTap.bEnable) objMark(obj);
+							if(fingerTap.bEnable) objMark(obj);
 							obj.transform();
 							obj.draw();
 						}
@@ -212,8 +211,8 @@ public class Game {
 			if(obj.bMarked)																// if multiple objects are marked, only which is target object should be marked
 				obj.bMarked = (obj.ID == oTarget.ID);
 
-			if(oTap.bEnable && ++oTap.posT >= MAX_OBJECTS) {                             // Disable screen tap, once all objects has been checked
-				oTap.bEnable = false;
+			if(fingerTap.bEnable && ++fingerTap.posT >= MAX_OBJECTS) {                             // Disable screen tap, once all objects has been checked
+				fingerTap.bEnable = false;
                 iDebugTap = 0;
             }
 		}
@@ -248,14 +247,14 @@ public class Game {
 	public static void objMark(Object vObj) {
 		float distNew, distOld;
 
-		if(tapTimer < 15 && vObj.detectCollision(oTap)){									// if Object has been tapped
-			distNew = Math.abs(oTap.posY - vObj.posY) + Math.abs(oTap.posX - vObj.posX);
-			distOld = Math.abs(oTap.posY - oTarget.posY) + Math.abs(oTap.posX - oTarget.posX);
+		if(tapTimer < 15 && vObj.detectCollision(fingerTap)){									// if Object has been tapped
+			distNew = Math.abs(fingerTap.posY - vObj.posY) + Math.abs(fingerTap.posX - vObj.posX);
+			distOld = Math.abs(fingerTap.posY - oTarget.posY) + Math.abs(fingerTap.posX - oTarget.posX);
 
 			if((distNew < distOld) || !oTarget.bMarked){									// If multiple enemies, select the one nearest
 				oTarget = vObj;														        // Set object as target for shock wave
 				oTarget.bMarked = true;
-				oTap.bEnable = false;
+				fingerTap.bEnable = false;
 				events.dispatch(Events.ENEMY_POKE);
 			}
 		}
