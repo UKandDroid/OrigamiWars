@@ -105,62 +105,62 @@ public class Events extends Base {
 
         flowVibration.code((Flow.Code) (iAction, bSingle, iExtra, data) -> {
             Event event = (Event)data;
-            if (bSingle)                         // its a single vibration
+            if (bSingle) {                         // its a single vibration
                 vibrate.vibrate(event.aVibrate[0]);
-            else                                                  // Its a vibration pattern
+            } else {                                                  // Its a vibration pattern
                 vibrate.vibrate(event.aVibrate, -1);       // Don't repeat
+            }
         });
 
-
-        //		  Event         -----Priority----TimesRun ---- Time----------Line--------Pause --------overlap----Sound ---- Vibrate
-        arrEvents[READY] = new Event(0, -1, 1, 0, false, 0, -1, null);
-        arrEvents[SURVIVE] = new Event(1, -1, 1, 1, false, 0, -1, null);
-        arrEvents[TOUCH_TO_MOVE] = new Event(2, 1, 3, 2, true, 0, Sound.VOICE_MOVE, null);
-        arrEvents[TOUCH_TO_FIRE] = new Event(2, 1, 3, 3, true, 0, Sound.VOICE_FIRE, null);
+        //		  Event                   ---- Priority - TimesRun ---- Time ------- Line ------ Pause ------- overlap -- Sound ----- Vibrate
+        arrEvents[READY] =          new Event(0, -1, 1, 0, false, 0, -1, null);
+        arrEvents[SURVIVE] =        new Event(1, -1, 1, 1, false, 0, -1, null);
+        arrEvents[TOUCH_TO_MOVE] =  new Event(2, 1, 3, 2, true, 0, Sound.VOICE_MOVE, null);
+        arrEvents[TOUCH_TO_FIRE] =  new Event(2, 1, 3, 3, true, 0, Sound.VOICE_FIRE, null);
         arrEvents[BLOW_ON_SCREEN] = null; // removed blow function
-        arrEvents[FLICK_TO_ROLL] = new Event(2, 1, 3, 5, true, 0, Sound.VOICE_ROLL, null);
+        arrEvents[FLICK_TO_ROLL] =  new Event(2, 1, 3, 5, true, 0, Sound.VOICE_ROLL, null);
         arrEvents[FLICK_TO_SWAVE] = new Event(2, 1, 3, 6, false, 0, Sound.VOICE_SWAVE, null);
-        arrEvents[SWITCH_WEAPON] = new Event(1, 1, 3, 7, true, 0, Sound.VOICE_WEAPON, null);
+        arrEvents[SWITCH_WEAPON] =  new Event(1, 1, 3, 7, true, 0, Sound.VOICE_WEAPON, null);
         arrEvents[LEVEL_COMPLETE] = new Event(2, -1, 5, 8, false, 0, Sound.LEVEL_COMPLETE, null);
-        arrEvents[GAME_OVER] = new Event(3, -1, 3, 9, false, 0, Sound.GAMEOVER, null);
-        arrEvents[COLLECT_PUPS] = new Event(1, 2, 2, 10, false, 0, -1, null);
-        arrEvents[EXTRA_LIFE] = new Event(1, -1, 1, 11, false, 0, Sound.EXTRA_LIFE, null);
-        arrEvents[MAX_DISTANCE] = new Event(0, -1, 2, 12, false, 0, Sound.NEW_RECORD, null);
-        arrEvents[SCORE] = new Event(2, -1, 1, 13, false, 0, -1, null);
-        arrEvents[EMPTY_14] = new Event(0, -1, 1, 14, false, 0, -1, null);
-        arrEvents[PROXIMITY_ALERT] = new Event(2, 1, 1, 15, false, 0, Sound.ALERT, null);
-        arrEvents[SAVE_ORIGAMIS] = new Event(0, -1, 3, 16, false, 0, -1, null);
-        arrEvents[HIGHEST_SCORE] = new Event(0, -1, 2, 17, false, 0, Sound.NEW_RECORD, null);
-        arrEvents[WEAPON_EMPTY] = new Event(0, -1, 1, 18, false, 0, Sound.WEAPON_EMPTY, null);
-        arrEvents[LOST_3_TIMES] = new Event(0, -1, 2, 19, false, 0, -1, null);
-        arrEvents[EMPTY_SLOT_20] = new Event(0, -1, 2, 0, false, 0, -1, null);
+        arrEvents[GAME_OVER] =      new Event(3, -1, 3, 9, false, 0, Sound.GAMEOVER, null);
+        arrEvents[COLLECT_PUPS] =   new Event(1, 2, 2, 10, false, 0, -1, null);
+        arrEvents[EXTRA_LIFE] =     new Event(1, -1, 1, 11, false, 0, Sound.EXTRA_LIFE, null);
+        arrEvents[MAX_DISTANCE] =   new Event(0, -1, 2, 12, false, 0, Sound.NEW_RECORD, null);
+        arrEvents[SCORE] =          new Event(2, -1, 1, 13, false, 0, -1, null);
+        arrEvents[EMPTY_14] =       new Event(0, -1, 1, 14, false, 0, -1, null);
+        arrEvents[PROXIMITY_ALERT] =new Event(2, 1, 1, 15, false, 0, Sound.ALERT, null);
+        arrEvents[SAVE_ORIGAMIS] =  new Event(0, -1, 3, 16, false, 0, -1, null);
+        arrEvents[HIGHEST_SCORE] =  new Event(0, -1, 2, 17, false, 0, Sound.NEW_RECORD, null);
+        arrEvents[WEAPON_EMPTY] =   new Event(0, -1, 1, 18, false, 0, Sound.WEAPON_EMPTY, null);
+        arrEvents[LOST_3_TIMES] =   new Event(0, -1, 2, 19, false, 0, -1, null);
+        arrEvents[EMPTY_SLOT_20] =  new Event(0, -1, 2, 0, false, 0, -1, null);
         arrEvents[CONSCDER_CLASS] = new Event(0, -1, 3, 1, false, 0, Sound.NEW_RECORD, null);
-        arrEvents[STAGE1_LEVEL2] = new Event(0, -1, 3, 2, false, 0, -1, null);
-        arrEvents[STAGE1_LEVEL3] = new Event(0, -1, 3, 3, false, 0, -1, null);
-        arrEvents[STAGE2_LEVEL1] = new Event(0, -1, 3, 4, false, 0, -1, null);
-        arrEvents[STAGE2_LEVEL2] = new Event(0, -1, 3, 5, false, 0, -1, null);
-        arrEvents[STAGE2_LEVEL3] = new Event(0, -1, 3, 6, false, 0, -1, null);
-        arrEvents[STAGE3_LEVEL1] = new Event(0, -1, 3, 7, false, 0, -1, null);
-        arrEvents[STAGE3_LEVEL2] = new Event(0, -1, 3, 8, false, 0, -1, null);
-        arrEvents[STAGE3_LEVEL3] = new Event(0, -1, 3, 9, false, 0, -1, null);
-        arrEvents[HIGHEST_WINS] = new Event(0, -1, 2, 10, false, 0, Sound.NEW_RECORD, null);
-        arrEvents[BIGGEST_LOSER] = new Event(0, -1, 3, 11, false, 0, Sound.NEW_RECORD, null);
-        arrEvents[EMPTY_SLOT_32] = new Event(0, -1, 0, 0, false, 0, -1, null);
-        arrEvents[EMPTY_SLOT_33] = new Event(0, -1, 0, 0, false, 0, -1, null);
+        arrEvents[STAGE1_LEVEL2] =  new Event(0, -1, 3, 2, false, 0, -1, null);
+        arrEvents[STAGE1_LEVEL3] =  new Event(0, -1, 3, 3, false, 0, -1, null);
+        arrEvents[STAGE2_LEVEL1] =  new Event(0, -1, 3, 4, false, 0, -1, null);
+        arrEvents[STAGE2_LEVEL2] =  new Event(0, -1, 3, 5, false, 0, -1, null);
+        arrEvents[STAGE2_LEVEL3] =  new Event(0, -1, 3, 6, false, 0, -1, null);
+        arrEvents[STAGE3_LEVEL1] =  new Event(0, -1, 3, 7, false, 0, -1, null);
+        arrEvents[STAGE3_LEVEL2] =  new Event(0, -1, 3, 8, false, 0, -1, null);
+        arrEvents[STAGE3_LEVEL3] =  new Event(0, -1, 3, 9, false, 0, -1, null);
+        arrEvents[HIGHEST_WINS] =   new Event(0, -1, 2, 10, false, 0, Sound.NEW_RECORD, null);
+        arrEvents[BIGGEST_LOSER] =  new Event(0, -1, 3, 11, false, 0, Sound.NEW_RECORD, null);
+        arrEvents[EMPTY_SLOT_32] =  new Event(0, -1, 0, 0, false, 0, -1, null);
+        arrEvents[EMPTY_SLOT_33] =  new Event(0, -1, 0, 0, false, 0, -1, null);
         arrEvents[YOU_ARE_CURSED] = new Event(2, 2, 3, 12, true, 0, Sound.VOICE_CURSED, null);
         arrEvents[CYCLE_OF_POWER] = new Event(1, 1, 3, 13, true, 0, Sound.VOICE_COPOWER, null);
         arrEvents[COLL_MAG_SCRLS] = new Event(0, 1, 3, 14, true, 0, Sound.VOICE_SCROLLS, null);
 
         // NO GUI, only Sound and Vibrate
-        arrEvents[VIBRATE_50] = new Event(0, -1, 0, 0, false, 0, -1, new long[]{50});
-        arrEvents[SHOT_NORMAL] = new Event(0, -1, 0, 0, false, 0.0f, Sound.GUN_NORMAL, new long[]{10});
-        arrEvents[SHOT_MACHINE] = new Event(0, -1, 0, 0, false, -0.15f, Sound.GUN_MACHINE, new long[]{15});
-        arrEvents[SHOT_DBARELL] = new Event(0, -1, 0, 0, false, -0.13f, Sound.GUN_DOUBLE, new long[]{20, 25});
+        arrEvents[VIBRATE_50] =     new Event(0, -1, 0, 0, false, 0, -1, new long[]{50});
+        arrEvents[SHOT_NORMAL] =    new Event(0, -1, 0, 0, false, 0.0f, Sound.GUN_NORMAL, new long[]{10});
+        arrEvents[SHOT_MACHINE] =   new Event(0, -1, 0, 0, false, -0.15f, Sound.GUN_MACHINE, new long[]{15});
+        arrEvents[SHOT_DBARELL] =   new Event(0, -1, 0, 0, false, -0.13f, Sound.GUN_DOUBLE, new long[]{20, 25});
         arrEvents[SHOT_LIGHTNING] = new Event(0, -1, 0, 0, false, -0.20f, Sound.LIGHTNING, new long[]{35});
-        arrEvents[SHOCK_WAVE] = new Event(0, -1, 0, 0, false, 0.15f, Sound.SHOCK_WAVE, null);
-        arrEvents[VIBRATE_DRAG] = new Event(0, -1, 0, 0, false, 0.05f, Sound.DRAG, new long[]{0, 35, 25});
-        arrEvents[VIBRATE_CURSE] = new Event(0, -1, 0, 0, false, 0, Sound.CURSE, null);
-        arrEvents[MIC_CALIBRATE] = new Event(0, -1, 0, 0, false, 0, Sound.WIND_MIC_CALIB, new long[]{500, 35, 25, 25, 50, 35, 25, 25, 50, 35, 25,});
+        arrEvents[SHOCK_WAVE] =     new Event(0, -1, 0, 0, false, 0.15f, Sound.SHOCK_WAVE, null);
+        arrEvents[VIBRATE_DRAG] =   new Event(0, -1, 0, 0, false, 0.05f, Sound.DRAG, new long[]{0, 35, 25});
+        arrEvents[VIBRATE_CURSE] =  new Event(0, -1, 0, 0, false, 0, Sound.CURSE, null);
+        arrEvents[MIC_CALIBRATE] =  new Event(0, -1, 0, 0, false, 0, Sound.WIND_MIC_CALIB, new long[]{500, 35, 25, 25, 50, 35, 25, 25, 50, 35, 25,});
         arrEvents[PLANE_HIT_SHOT] = new Event(0, -1, 0, 0, false, 0, Sound.HIT_SHOT, new long[]{25});
         arrEvents[PLANE_HIT_ENEMY] = new Event(0, -1, 0, 0, false, 0, Sound.HIT_ENEMY, new long[]{0, 20, 20, 80});
         arrEvents[ENEMY_POKE] = new Event(0, -1, 0, 0, false, 0, Sound.POKE, null);
