@@ -218,21 +218,21 @@ class Mic extends Thread {
      *	METHODS -- Interface methods to be called from outside, to start and stop recording
      *************************************************************************************************************************/
     protected static void startRecording() {
-        lock.lock();
+       /* lock.lock();
         if(iInstances == 0)	{												    // If there is no instance of this thread already running
             iInstances++;
             bRecord = true;
             Mic newMic = new Mic();
             newMic.start();
         }
-        lock.unlock();
+        lock.unlock();*/
     }
 
     protected static void stopRecording() {
-        if(iInstances > 0) {
+      /*  if(iInstances > 0) {
             bRecord = false;
             iInstances--;
-        }
+        }*/
     }
 
 

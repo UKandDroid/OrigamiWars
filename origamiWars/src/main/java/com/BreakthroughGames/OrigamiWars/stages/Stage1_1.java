@@ -76,13 +76,11 @@ public void runOneFrame()
 private static void headUpDisplay()
 {
 	HUD.showStats();												// Show Stats HUD - Life, weapon, fire etc
-	switch(events.iTimer)
-		{
+	switch(events.iTimer) {
 		case 1:		events.dispatch(Events.READY);  			break;
 		case 120:	events.dispatch(Events.TOUCH_TO_MOVE);  	break; 	 
 		case 580: 	events.dispatch(Events.TOUCH_TO_FIRE);  	break;	 
 		case 940:	events.dispatch( Events.FLICK_TO_ROLL);  	break; 				// Flick up and down to roll
-		case 1540:  events.dispatch(Events.BLOW_ON_SCREEN);		break;	
 		}
 	events.draw();														// Show  event 
 }

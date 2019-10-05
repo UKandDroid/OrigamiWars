@@ -91,7 +91,7 @@ public class Events extends Base {
     protected static final int ENEMY_POKE = 48;
     protected static final int TOTAL_EVENTS = 49;                        // Total Number of events
 
-    public static Event aEvents[] = new Event[TOTAL_EVENTS];
+    public static Event arrEvents[] = new Event[TOTAL_EVENTS];
 
     Events(boolean bCreate) { }
     Events() {
@@ -104,67 +104,66 @@ public class Events extends Base {
             vibrate = (Vibrator) Game.refContext.getSystemService(Context.VIBRATOR_SERVICE);
 
         flowVibration.code((Flow.Code) (iAction, bSingle, iExtra, data) -> {
-                Event event = (Event)data;
-                if (bSingle)                         // its a single vibration
-                    vibrate.vibrate(event.aVibrate[0]);
-                else                                                  // Its a vibration pattern
-                    vibrate.vibrate(event.aVibrate, -1);       // Don't repeat
+            Event event = (Event)data;
+            if (bSingle)                         // its a single vibration
+                vibrate.vibrate(event.aVibrate[0]);
+            else                                                  // Its a vibration pattern
+                vibrate.vibrate(event.aVibrate, -1);       // Don't repeat
         });
 
-        //		  Event    ---  Priority,TimesRun ---- Time,Line,Pause --- overlap, Sound ---------------- Vibrate
 
-
-        aEvents[READY] = new Event(0, -1, 1, 0, false, 0, -1, null);
-        aEvents[SURVIVE] = new Event(1, -1, 1, 1, false, 0, -1, null);
-        aEvents[TOUCH_TO_MOVE] = new Event(2, 1, 3, 2, true, 0, Sound.VOICE_MOVE, null);
-        aEvents[TOUCH_TO_FIRE] = new Event(2, 1, 3, 3, true, 0, Sound.VOICE_FIRE, null);
-        aEvents[BLOW_ON_SCREEN] = new Event(2, 2, 3, 4, true, 0, Sound.VOICE_BLOW, null);
-        aEvents[FLICK_TO_ROLL] = new Event(2, 1, 3, 5, true, 0, Sound.VOICE_ROLL, null);
-        aEvents[FLICK_TO_SWAVE] = new Event(2, 1, 3, 6, false, 0, Sound.VOICE_SWAVE, null);
-        aEvents[SWITCH_WEAPON] = new Event(1, 1, 3, 7, true, 0, Sound.VOICE_WEAPON, null);
-        aEvents[LEVEL_COMPLETE] = new Event(2, -1, 5, 8, false, 0, Sound.LEVEL_COMPLETE, null);
-        aEvents[GAME_OVER] = new Event(3, -1, 3, 9, false, 0, Sound.GAMEOVER, null);
-        aEvents[COLLECT_PUPS] = new Event(1, 2, 2, 10, false, 0, -1, null);
-        aEvents[EXTRA_LIFE] = new Event(1, -1, 1, 11, false, 0, Sound.EXTRA_LIFE, null);
-        aEvents[MAX_DISTANCE] = new Event(0, -1, 2, 12, false, 0, Sound.NEW_RECORD, null);
-        aEvents[SCORE] = new Event(2, -1, 1, 13, false, 0, -1, null);
-        aEvents[EMPTY_14] = new Event(0, -1, 1, 14, false, 0, -1, null);
-        aEvents[PROXIMITY_ALERT] = new Event(2, 1, 1, 15, false, 0, Sound.ALERT, null);
-        aEvents[SAVE_ORIGAMIS] = new Event(0, -1, 3, 16, false, 0, -1, null);
-        aEvents[HIGHEST_SCORE] = new Event(0, -1, 2, 17, false, 0, Sound.NEW_RECORD, null);
-        aEvents[WEAPON_EMPTY] = new Event(0, -1, 1, 18, false, 0, Sound.WEAPON_EMPTY, null);
-        aEvents[LOST_3_TIMES] = new Event(0, -1, 2, 19, false, 0, -1, null);
-        aEvents[EMPTY_SLOT_20] = new Event(0, -1, 2, 0, false, 0, -1, null);
-        aEvents[CONSCDER_CLASS] = new Event(0, -1, 3, 1, false, 0, Sound.NEW_RECORD, null);
-        aEvents[STAGE1_LEVEL2] = new Event(0, -1, 3, 2, false, 0, -1, null);
-        aEvents[STAGE1_LEVEL3] = new Event(0, -1, 3, 3, false, 0, -1, null);
-        aEvents[STAGE2_LEVEL1] = new Event(0, -1, 3, 4, false, 0, -1, null);
-        aEvents[STAGE2_LEVEL2] = new Event(0, -1, 3, 5, false, 0, -1, null);
-        aEvents[STAGE2_LEVEL3] = new Event(0, -1, 3, 6, false, 0, -1, null);
-        aEvents[STAGE3_LEVEL1] = new Event(0, -1, 3, 7, false, 0, -1, null);
-        aEvents[STAGE3_LEVEL2] = new Event(0, -1, 3, 8, false, 0, -1, null);
-        aEvents[STAGE3_LEVEL3] = new Event(0, -1, 3, 9, false, 0, -1, null);
-        aEvents[HIGHEST_WINS] = new Event(0, -1, 2, 10, false, 0, Sound.NEW_RECORD, null);
-        aEvents[BIGGEST_LOSER] = new Event(0, -1, 3, 11, false, 0, Sound.NEW_RECORD, null);
-        aEvents[EMPTY_SLOT_32] = new Event(0, -1, 0, 0, false, 0, -1, null);
-        aEvents[EMPTY_SLOT_33] = new Event(0, -1, 0, 0, false, 0, -1, null);
-        aEvents[YOU_ARE_CURSED] = new Event(2, 2, 3, 12, true, 0, Sound.VOICE_CURSED, null);
-        aEvents[CYCLE_OF_POWER] = new Event(1, 1, 3, 13, true, 0, Sound.VOICE_COPOWER, null);
-        aEvents[COLL_MAG_SCRLS] = new Event(0, 1, 3, 14, true, 0, Sound.VOICE_SCROLLS, null);
+        //		  Event         -----Priority----TimesRun ---- Time----------Line--------Pause --------overlap----Sound ---- Vibrate
+        arrEvents[READY] = new Event(0, -1, 1, 0, false, 0, -1, null);
+        arrEvents[SURVIVE] = new Event(1, -1, 1, 1, false, 0, -1, null);
+        arrEvents[TOUCH_TO_MOVE] = new Event(2, 1, 3, 2, true, 0, Sound.VOICE_MOVE, null);
+        arrEvents[TOUCH_TO_FIRE] = new Event(2, 1, 3, 3, true, 0, Sound.VOICE_FIRE, null);
+        arrEvents[BLOW_ON_SCREEN] = null; // removed blow function
+        arrEvents[FLICK_TO_ROLL] = new Event(2, 1, 3, 5, true, 0, Sound.VOICE_ROLL, null);
+        arrEvents[FLICK_TO_SWAVE] = new Event(2, 1, 3, 6, false, 0, Sound.VOICE_SWAVE, null);
+        arrEvents[SWITCH_WEAPON] = new Event(1, 1, 3, 7, true, 0, Sound.VOICE_WEAPON, null);
+        arrEvents[LEVEL_COMPLETE] = new Event(2, -1, 5, 8, false, 0, Sound.LEVEL_COMPLETE, null);
+        arrEvents[GAME_OVER] = new Event(3, -1, 3, 9, false, 0, Sound.GAMEOVER, null);
+        arrEvents[COLLECT_PUPS] = new Event(1, 2, 2, 10, false, 0, -1, null);
+        arrEvents[EXTRA_LIFE] = new Event(1, -1, 1, 11, false, 0, Sound.EXTRA_LIFE, null);
+        arrEvents[MAX_DISTANCE] = new Event(0, -1, 2, 12, false, 0, Sound.NEW_RECORD, null);
+        arrEvents[SCORE] = new Event(2, -1, 1, 13, false, 0, -1, null);
+        arrEvents[EMPTY_14] = new Event(0, -1, 1, 14, false, 0, -1, null);
+        arrEvents[PROXIMITY_ALERT] = new Event(2, 1, 1, 15, false, 0, Sound.ALERT, null);
+        arrEvents[SAVE_ORIGAMIS] = new Event(0, -1, 3, 16, false, 0, -1, null);
+        arrEvents[HIGHEST_SCORE] = new Event(0, -1, 2, 17, false, 0, Sound.NEW_RECORD, null);
+        arrEvents[WEAPON_EMPTY] = new Event(0, -1, 1, 18, false, 0, Sound.WEAPON_EMPTY, null);
+        arrEvents[LOST_3_TIMES] = new Event(0, -1, 2, 19, false, 0, -1, null);
+        arrEvents[EMPTY_SLOT_20] = new Event(0, -1, 2, 0, false, 0, -1, null);
+        arrEvents[CONSCDER_CLASS] = new Event(0, -1, 3, 1, false, 0, Sound.NEW_RECORD, null);
+        arrEvents[STAGE1_LEVEL2] = new Event(0, -1, 3, 2, false, 0, -1, null);
+        arrEvents[STAGE1_LEVEL3] = new Event(0, -1, 3, 3, false, 0, -1, null);
+        arrEvents[STAGE2_LEVEL1] = new Event(0, -1, 3, 4, false, 0, -1, null);
+        arrEvents[STAGE2_LEVEL2] = new Event(0, -1, 3, 5, false, 0, -1, null);
+        arrEvents[STAGE2_LEVEL3] = new Event(0, -1, 3, 6, false, 0, -1, null);
+        arrEvents[STAGE3_LEVEL1] = new Event(0, -1, 3, 7, false, 0, -1, null);
+        arrEvents[STAGE3_LEVEL2] = new Event(0, -1, 3, 8, false, 0, -1, null);
+        arrEvents[STAGE3_LEVEL3] = new Event(0, -1, 3, 9, false, 0, -1, null);
+        arrEvents[HIGHEST_WINS] = new Event(0, -1, 2, 10, false, 0, Sound.NEW_RECORD, null);
+        arrEvents[BIGGEST_LOSER] = new Event(0, -1, 3, 11, false, 0, Sound.NEW_RECORD, null);
+        arrEvents[EMPTY_SLOT_32] = new Event(0, -1, 0, 0, false, 0, -1, null);
+        arrEvents[EMPTY_SLOT_33] = new Event(0, -1, 0, 0, false, 0, -1, null);
+        arrEvents[YOU_ARE_CURSED] = new Event(2, 2, 3, 12, true, 0, Sound.VOICE_CURSED, null);
+        arrEvents[CYCLE_OF_POWER] = new Event(1, 1, 3, 13, true, 0, Sound.VOICE_COPOWER, null);
+        arrEvents[COLL_MAG_SCRLS] = new Event(0, 1, 3, 14, true, 0, Sound.VOICE_SCROLLS, null);
 
         // NO GUI, only Sound and Vibrate
-        aEvents[VIBRATE_50] = new Event(0, -1, 0, 0, false, 0, -1, new long[]{50});
-        aEvents[SHOT_NORMAL] = new Event(0, -1, 0, 0, false, 0.0f, Sound.GUN_NORMAL, new long[]{10});
-        aEvents[SHOT_MACHINE] = new Event(0, -1, 0, 0, false, -0.15f, Sound.GUN_MACHINE, new long[]{15});
-        aEvents[SHOT_DBARELL] = new Event(0, -1, 0, 0, false, -0.13f, Sound.GUN_DOUBLE, new long[]{20, 25});
-        aEvents[SHOT_LIGHTNING] = new Event(0, -1, 0, 0, false, -0.20f, Sound.LIGHTNING, new long[]{35});
-        aEvents[SHOCK_WAVE] = new Event(0, -1, 0, 0, false, 0.15f, Sound.SHOCK_WAVE, null);
-        aEvents[VIBRATE_DRAG] = new Event(0, -1, 0, 0, false, 0.05f, Sound.DRAG, new long[]{0, 35, 25});
-        aEvents[VIBRATE_CURSE] = new Event(0, -1, 0, 0, false, 0, Sound.CURSE, null);
-        aEvents[MIC_CALIBRATE] = new Event(0, -1, 0, 0, false, 0, Sound.WIND_MIC_CALIB, new long[]{500, 35, 25, 25, 50, 35, 25, 25, 50, 35, 25,});
-        aEvents[PLANE_HIT_SHOT] = new Event(0, -1, 0, 0, false, 0, Sound.HIT_SHOT, new long[]{25});
-        aEvents[PLANE_HIT_ENEMY] = new Event(0, -1, 0, 0, false, 0, Sound.HIT_ENEMY, new long[]{0, 20, 20, 80});
-        aEvents[ENEMY_POKE] = new Event(0, -1, 0, 0, false, 0, Sound.POKE, null);
+        arrEvents[VIBRATE_50] = new Event(0, -1, 0, 0, false, 0, -1, new long[]{50});
+        arrEvents[SHOT_NORMAL] = new Event(0, -1, 0, 0, false, 0.0f, Sound.GUN_NORMAL, new long[]{10});
+        arrEvents[SHOT_MACHINE] = new Event(0, -1, 0, 0, false, -0.15f, Sound.GUN_MACHINE, new long[]{15});
+        arrEvents[SHOT_DBARELL] = new Event(0, -1, 0, 0, false, -0.13f, Sound.GUN_DOUBLE, new long[]{20, 25});
+        arrEvents[SHOT_LIGHTNING] = new Event(0, -1, 0, 0, false, -0.20f, Sound.LIGHTNING, new long[]{35});
+        arrEvents[SHOCK_WAVE] = new Event(0, -1, 0, 0, false, 0.15f, Sound.SHOCK_WAVE, null);
+        arrEvents[VIBRATE_DRAG] = new Event(0, -1, 0, 0, false, 0.05f, Sound.DRAG, new long[]{0, 35, 25});
+        arrEvents[VIBRATE_CURSE] = new Event(0, -1, 0, 0, false, 0, Sound.CURSE, null);
+        arrEvents[MIC_CALIBRATE] = new Event(0, -1, 0, 0, false, 0, Sound.WIND_MIC_CALIB, new long[]{500, 35, 25, 25, 50, 35, 25, 25, 50, 35, 25,});
+        arrEvents[PLANE_HIT_SHOT] = new Event(0, -1, 0, 0, false, 0, Sound.HIT_SHOT, new long[]{25});
+        arrEvents[PLANE_HIT_ENEMY] = new Event(0, -1, 0, 0, false, 0, Sound.HIT_ENEMY, new long[]{0, 20, 20, 80});
+        arrEvents[ENEMY_POKE] = new Event(0, -1, 0, 0, false, 0, Sound.POKE, null);
     }
 
     /************************************************************************************************************************
@@ -209,27 +208,29 @@ public class Events extends Base {
     /************************************************************************************************************************
      *   METHOD- Called by levels/Game when an event occurs
      ***********************************************************************************************************************/
-    public void dispatch(final int vEvent) {
-        final Event eve = aEvents[vEvent];                                    // Reference to event object
+    public void dispatch(final int eventId) {
+        final Event event = arrEvents[eventId];
+        if(event == null)
+            return;
 
-        if (vEvent > LAST_GUI_EVENT) {                                        // Event Doesn't have any Text or GUI
-            if (eve.iSound != -1)                                             // Play event sound
-                SoundPlayer.playSound(eve.iSound, eve.fOverlap);
-            if (vibrate != null && eve.aVibrate != null) {                      // If event has a vibration then play it
-                flowVibration.run(0,  false,eve.aVibrate.length == 1,0, eve);
+        if (isNonGuiEvent(eventId)) {
+            if (event.iSound != -1)                                             // Play event sound
+                SoundPlayer.playSound(event.iSound, event.fOverlap);
+            if (vibrate != null && event.aVibrate != null) {                    // If event has a vibration then play it
+                flowVibration.run(0,  false,event.aVibrate.length == 1,0, event);
             }
-        } else if (eve.iTimesRun != 0 && eve.iPriority > curEvePri && Player.bEnable) {            // If Event has already run set number of times, don't run it
-            if (eve.iTimesRun > 0)
-                eve.iTimesRun--;                        // If Event has set number of times, reduce one
-            if (bEnable && aEvents[curEvent].iSound != -1 && eve.iSound != -1)        // If last event is still running, stop its sound if it has any
-                SoundPlayer.stopSound(aEvents[curEvent].iSound);            // Stop sound of last Txt event
-            if (eve.iSound != -1)                                            // Play event associated sound
-                SoundPlayer.playSound(eve.iSound, eve.fOverlap);
+        } else if (event.iTimesRun != 0 && event.iPriority > curEvePri && Player.bEnable) {            // If Event has already run set number of times, don't run it
+            if (event.iTimesRun > 0)
+                event.iTimesRun--;                        // If Event has set number of times, reduce one
+            if (bEnable && arrEvents[curEvent].iSound != -1 && event.iSound != -1)        // If last event is still running, stop its sound if it has any
+                SoundPlayer.stopSound(arrEvents[curEvent].iSound);                // Stop sound of last Txt event
+            if (event.iSound != -1)                                               // Play event associated sound
+                SoundPlayer.playSound(event.iSound, event.fOverlap);
 
-            curEvent = vEvent;                                                // Cur Event
-            curEvePri = eve.iPriority;                                        // Priority, used if there is another event before this one finishes
-            iTexture = (vEvent > 19) ? Game.txtEvent2.iTexture : Game.txtEvent1.iTexture; // Select texture Sheet
-            setEvent(eve.iLineStart, eve.iDisplayTime, eve.bPause);
+            curEvent = eventId;                                                  // Cur Event
+            curEvePri = event.iPriority;                                         // Priority, used if there is another event before this one finishes
+            iTexture = (eventId > 19) ? Game.txtEvent2.iTexture : Game.txtEvent1.iTexture; // Select texture Sheet
+            setEvent(event.iLineStart, event.iDisplayTime, event.bPause);
         }
     }
 
@@ -251,12 +252,11 @@ public class Events extends Base {
     protected static void prefSave(boolean bSave) {
 
         String string = null;
-        int length = Events.aEvents.length;
-        if (bSave)                                                            // If save, save prefs, else load
-        {
+        int length = Events.arrEvents.length;
+        if (bSave) {                                                           // If save, save prefs, else load
             StringBuilder buf = new StringBuilder();
             for (int i = 0; i < length; i++)
-                buf.append(Events.aEvents[i].iTimesRun + ",");
+                buf.append(Events.arrEvents[i].iTimesRun + ",");
             Game.refActGame.getPreferences(0).edit().putString(Pref.PREF_EVENTS, buf.toString()).commit();    // Save Events Run Times String
         } else {
             string = Game.refActGame.getPreferences(0).getString(Pref.PREF_EVENTS, "");
@@ -264,15 +264,13 @@ public class Events extends Base {
                 try {
                     int i = 0;
                     for (String token : string.split(","))
-                        Events.aEvents[i++].iTimesRun = Byte.parseByte(token);
-                } catch (NumberFormatException nfe) {
-                    nfe.printStackTrace();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                        Events.arrEvents[i++].iTimesRun = Byte.parseByte(token);
+                } catch (NumberFormatException nfe) { nfe.printStackTrace();
+                } catch (Exception e) { e.printStackTrace(); }
         }
     }
-/************************************************************************************************************************
- *   END: Class EVENT
- ***********************************************************************************************************************/
+
+
+    boolean isGuiEvent(int id){ return  id <= LAST_GUI_EVENT; }
+    boolean isNonGuiEvent(int id){ return  !isGuiEvent(id); }
 }//End Class

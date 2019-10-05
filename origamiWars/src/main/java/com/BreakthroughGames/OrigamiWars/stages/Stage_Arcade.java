@@ -112,7 +112,6 @@ public class Stage_Arcade extends Arcade {
 		case 120:	events.dispatch(Events.SCORE);  			break;
 		case 240:	events.dispatch(Events.TOUCH_TO_MOVE);  	break; 	 
 		case 480:	events.dispatch(Events.TOUCH_TO_FIRE);  	break;
-		case 2000:	events.dispatch(Events.BLOW_ON_SCREEN);  	break;
 		}
 		events.draw();
 	}

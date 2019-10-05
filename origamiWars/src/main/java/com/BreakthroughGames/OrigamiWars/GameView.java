@@ -172,8 +172,8 @@ public class GameView extends GLSurfaceView implements Renderer	{				//Class to 
 			}	
 	}
 	
-	@Override	public void onPause()	{ Mic.stopRecording();}	
-	@Override	public void onResume()	{ Mic.startRecording();}
+	@Override	public void onPause()	{ /*Mic.stopRecording();*/}
+	@Override	public void onResume()	{ /*Mic.startRecording();*/}
 	
 /************************************************************************************************************************
 *	METHOD -- Touch Screen Handler
