@@ -333,15 +333,17 @@ private void calCollision(int vAction) {
 				case ACTION_CRUISE: 
 					cruise.posX += (diffX*Math.abs(absY))/2;
 					cruise.posY += (diffY*Math.abs(absX));
-				break;						// slow crusing down
+				break;						// slow cruising down
 				}
 
-//			if(vAction == ACTION_DEATH_FALL )
-//				posT = arrCollision[Obstacle.POSITION] == Obstacle.CLOUD_DOWN ? 2 : 2;	 
 		break;
 		}
 }
-/************************************************************************************************************************
-*	CLASS-END
-************************************************************************************************************************/
+
+	public float easeInOut(float vValue, float vCounter) {
+		float temHalf = vValue / 2;
+		float fVelocity = 1 / temHalf;
+		float vTime = temHalf - Math.abs(temHalf - vCounter);
+		return (float) ((double) (0.5f * (fVelocity) * vTime) + (0.5 * (fVelocity * fVelocity * vTime * vTime)));
+	}
 	}

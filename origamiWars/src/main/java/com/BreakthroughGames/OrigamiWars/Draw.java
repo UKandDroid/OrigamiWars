@@ -17,10 +17,6 @@ public class Draw {
             {0.0f, 1.0f}, {0.25f, 1.0f}, {0.50f, 1.0f}, {0.75f, 1.0f},
     };
 
-    /************************************************************************************************************************
-     *    METHODS --
-     ************************************************************************************************************************/
-
     Draw() { }
 
     public void setTextureSize(float startX, float startY, float endX, float endY) {
@@ -51,33 +47,16 @@ public class Draw {
         GLWrapper.transform(scaleX, scaleY, transX, transY);
     }
 
-
     public static void translate(float transX, float transY) {
         GLWrapper.transform(transX, transY);
     }
 
-
     public static void transform(float scaleX, float scaleY, float transX, float transY, float rotateZ) {
         GLWrapper.transform(scaleX, scaleY, transX, transY, rotateZ);
-    }
-
-
-    /************************************************************************************************************************
-     *    METHODS -- Initialise Buffer Methods
-     ************************************************************************************************************************/
-
-    public float easeInOut(float vValue, float vCounter) {
-        float temHalf = vValue / 2;
-        float fVelocity = 1 / temHalf;
-        float vTime = temHalf - Math.abs(temHalf - vCounter);
-        return (float) ((double) (0.5f * (fVelocity) * vTime) + (0.5 * (fVelocity * fVelocity * vTime * vTime)));
     }
 
     public void setTransparency(float vTrans) {
         Opacity = vTrans;
     }
 
-    /************************************************************************************************************************
-     *	CLASS-END
-     ************************************************************************************************************************/
 }

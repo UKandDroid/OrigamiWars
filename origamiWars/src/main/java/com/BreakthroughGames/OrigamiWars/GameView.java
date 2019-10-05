@@ -51,6 +51,7 @@ public class GameView extends GLSurfaceView implements Renderer	{				//Class to 
 		gl.glLoadIdentity();													// load current matrix to identity
 		gl.glOrthof(1f, 0f, 1f, 0f, -1f, 1f);
 		gl.glEnable(GL10.GL_BLEND);
+		gl.glEnable(GL10.GL_LIGHT0);
 		gl.glBlendFunc(GL10.GL_ONE,GL10.GL_ONE_MINUS_SRC_ALPHA);
 		startGame( gl);
 		Draw.gl = gl;
@@ -72,10 +73,7 @@ public class GameView extends GLSurfaceView implements Renderer	{				//Class to 
 		gl.glEnableClientState(GL10.GL_TEXTURE_COORD_ARRAY);
 
 		setRenderMode(RENDERMODE_WHEN_DIRTY);
-		//Screen.init(Game.refContext.getResources().getDisplayMetrics());											// Set Aspect ratio and MAX_X & MAX_Y
 		Screen.init(Game.refActGame);
-		//	String glExt = gl.glGetString(GL10.GL_EXTENSIONS);
-		//	glExt.contains("vertex_buffer_object");
 	}
 	/************************************************************************************************************************
 	 *	END DEFAULT METHODS
