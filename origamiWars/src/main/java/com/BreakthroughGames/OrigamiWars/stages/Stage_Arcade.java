@@ -12,8 +12,6 @@ import com.BreakthroughGames.OrigamiWars.Sound;
 import com.BreakthroughGames.OrigamiWars.SoundPlayer;
 import com.BreakthroughGames.OrigamiWars.Values;
 
-import javax.microedition.khronos.opengles.GL10;
-
 public class Stage_Arcade extends Arcade {
 
 	// Method call Sequence for New Game: loadingScreen() -> LoadLevel(){ super.Reset() InitObjects() resumeLevel()}
@@ -152,7 +150,7 @@ public class Stage_Arcade extends Arcade {
 			switch(iSequence) {
 			case 0: iSequence++;	Pref.getSet(Pref.GAME_OVER);		break;
 			case 1:	iSequence++;	events.dispatch(Events.GAME_OVER);	break;
-			case 2: Screen.iMenu =  Screen.MENU_GAMEOVER; 	return Values.GAME_OVER;
+			case 2: Screen.iMenu =  Screen.MENU_GAME_OVER; 	return Values.GAME_OVER;
 			}		
 		return Values.GAME_RUNNING;
 	}	

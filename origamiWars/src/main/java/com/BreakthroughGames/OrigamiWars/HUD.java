@@ -233,7 +233,7 @@ public class HUD {
                 Screen.bPause = true;                                // Pause the game and enable the menu
 
                 break;
-            case Screen.MENU_GAMEOVER:                                // Buttons Restart and Exit
+            case Screen.MENU_GAME_OVER:                                // Buttons Restart and Exit
                 Draw.transform(iconMenuX, iconMenuY, Screen.menuExitX, Screen.menuExitY);
                 sprite.draw(itxtMenu, 4);
                 Draw.transform(iconMenuX, iconMenuY, Screen.menuRestartX, Screen.menuRestartY);

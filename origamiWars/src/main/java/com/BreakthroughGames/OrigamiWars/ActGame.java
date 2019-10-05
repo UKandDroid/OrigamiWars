@@ -12,8 +12,7 @@ public class ActGame extends Activity {
     private FrameLayout layout;
     private GameView gameView = null;
     protected static int iBackPressed = 0;
-    private FrameLayout.LayoutParams params;
-
+    private Controls controls = new Controls();
 
     @Override
     public void onCreate(Bundle sis) {
@@ -50,18 +49,13 @@ public class ActGame extends Activity {
             });
         }
 
-        Game.iMode = getIntent().getIntExtra("GameMode", Values.STORY_MODE);                // Get value for GameMode, default is start new
+        Game.iMode = getIntent().getIntExtra("GameMode", Values.STORY_MODE);           // Get value for GameMode, default is start new
 
         gameView = new GameView(this);
         layout = new FrameLayout(this);
-        params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, Gravity.BOTTOM);
-
         layout.addView(gameView);                                                            // Add Game view
-        if (Values.bShowAds) {                                                                // If free game ver, Display Ads
-
-        }
         setContentView(layout);
-
+       // controls.initialize(gameView);
     }//End onCreate()
 
 

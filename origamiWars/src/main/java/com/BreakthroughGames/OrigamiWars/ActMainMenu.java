@@ -73,7 +73,7 @@ public class ActMainMenu extends Activity {
         }
 
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
-        Pref.bFB_Like = getPreferences(0).getBoolean(Pref.FBOOK_LIKE, false);
+        Pref.bFB_Like = getPreferences(0).getBoolean(Pref.FB_LIKE, false);
         Events.vibrate = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         anim = new ScaleAnimation(0.5f, 1.0f, 1.0f, 1.0f, Animation.RELATIVE_TO_SELF, 0.95f, Animation.RELATIVE_TO_SELF, 0.5f); // Scale Animation for Facebook Like Button, Scale
@@ -203,7 +203,7 @@ public class ActMainMenu extends Activity {
                 //	fbPost.postNewRecords();
 
                 if (!Pref.bFB_Like)
-                    getPreferences(0).edit().putBoolean(Pref.FBOOK_LIKE, true).commit();
+                    getPreferences(0).edit().putBoolean(Pref.FB_LIKE, true).commit();
                 Pref.bFB_Like = true;
 
                 try {                                                                        // Open Native App

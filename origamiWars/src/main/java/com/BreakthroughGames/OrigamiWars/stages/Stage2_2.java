@@ -140,7 +140,7 @@ public class Stage2_2 extends Adventure
 				{
 				case 0: iSequence++;	Pref.getSet(Pref.GAME_OVER);		break;
 				case 1:	iSequence++;	events.dispatch(Events.GAME_OVER);	break;
-				case 2: Screen.iMenu =  Screen.MENU_GAMEOVER; 	return Values.GAME_OVER;
+				case 2: Screen.iMenu =  Screen.MENU_GAME_OVER; 	return Values.GAME_OVER;
 				}
 		else if(!events.bEnable && enemyDestroyed == LEVEL_ENEMIES)	// Level Complete
 			switch(iSequence)

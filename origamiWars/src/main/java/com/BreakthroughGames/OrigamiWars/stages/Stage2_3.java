@@ -180,7 +180,7 @@ public class Stage2_3 extends Adventure {
                         events.dispatch(Events.GAME_OVER);
                         break;
                     case 2:
-                        Screen.iMenu = Screen.MENU_GAMEOVER;
+                        Screen.iMenu = Screen.MENU_GAME_OVER;
                         return Values.GAME_OVER;
                 }
         }

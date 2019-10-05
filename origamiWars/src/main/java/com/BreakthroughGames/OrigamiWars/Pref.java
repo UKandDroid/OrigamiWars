@@ -15,7 +15,7 @@ public class Pref {
 	protected static final int ARCADE_SAVE    = 7;
 
 	protected static final String PREF_EVENTS  	 = "pEvents";
-	protected static final String FBOOK_LIKE 	 = "fbLike";
+	protected static final String FB_LIKE 		 = "fbLike";
 	private static final String PREF_WEAPON1 	 = "pWeapon1";						// Story Mode Prefs
 	private static final String PREF_WEAPON2 	 = "pWeapon2";
 	private static final String PREF_WEAPON3	 = "pWeapon3";
@@ -139,20 +139,17 @@ public class Pref {
 
 			case GAME_OVER:
 				boolean bNoEvent = true;
-				if(pref.getLong(PREF_STORY_SCORE, 0) < Game.scoreBoard.getScore())
-				{
+				if(pref.getLong(PREF_STORY_SCORE, 0) < Game.scoreBoard.getScore()) {
 					pref.edit().putLong(PREF_STORY_SCORE, Game.scoreBoard.getScore()).apply();
 					Adventure.events.dispatch(Events.HIGHEST_SCORE);
 					bNoEvent= false;
 				}
-				if(pref.getLong(PREF_TOP_WINS, 0) < (PowerUps.iTotalWins + PowerUps.iLevelWins) )
-				{
+				if(pref.getLong(PREF_TOP_WINS, 0) < (PowerUps.iTotalWins + PowerUps.iLevelWins) ) {
 					pref.edit().putLong(PREF_TOP_WINS, (PowerUps.iTotalWins + PowerUps.iLevelWins)).apply();
 					if(bNoEvent)	Adventure.events.dispatch(Events.HIGHEST_WINS);
 					bNoEvent= false;
 				}
-				if(pref.getLong(PREF_TOP_LOSES, 0) < (PowerUps.iTotalLoses + PowerUps.iLevelLoses) )
-				{
+				if(pref.getLong(PREF_TOP_LOSES, 0) < (PowerUps.iTotalLoses + PowerUps.iLevelLoses) ) {
 					pref.edit().putLong(PREF_TOP_LOSES, (PowerUps.iTotalLoses + PowerUps.iLevelLoses)).apply();
 					if(bNoEvent)	Adventure.events.dispatch(Events.BIGGEST_LOSER);
 					bNoEvent= false;

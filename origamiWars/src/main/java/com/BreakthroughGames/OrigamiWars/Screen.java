@@ -9,8 +9,7 @@ import android.view.MotionEvent;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public class Screen
-{
+public class Screen {
 	// Resources
 	static String strLog = "";
 
@@ -22,7 +21,7 @@ public class Screen
 
 	public static final int MENU_OFF 	 = 0;
 	protected static final int MENU_PAUSE 	 = 1;
-	public static final int MENU_GAMEOVER = 2;
+	public static final int MENU_GAME_OVER = 2;
 
 	protected static float butFireY = 0, butFireX = 0;								// GL Rescaled co-ordinated for Menu and fire button
 	protected static float MENU_MAX_X = 0, MENU_MAX_Y = 0;

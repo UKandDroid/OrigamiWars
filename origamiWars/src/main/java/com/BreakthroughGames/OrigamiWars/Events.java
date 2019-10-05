@@ -117,7 +117,7 @@ public class Events extends Base {
         arrEvents[SURVIVE] =        new Event(1, -1, 1, 1, false, 0, -1, null);
         arrEvents[TOUCH_TO_MOVE] =  new Event(2, 1, 3, 2, true, 0, Sound.VOICE_MOVE, null);
         arrEvents[TOUCH_TO_FIRE] =  new Event(2, 1, 3, 3, true, 0, Sound.VOICE_FIRE, null);
-        arrEvents[BLOW_ON_SCREEN] = null; // removed blow function
+        arrEvents[BLOW_ON_SCREEN] = new Event(0, 0, 0, 0, false, 0, -1, null);
         arrEvents[FLICK_TO_ROLL] =  new Event(2, 1, 3, 5, true, 0, Sound.VOICE_ROLL, null);
         arrEvents[FLICK_TO_SWAVE] = new Event(2, 1, 3, 6, false, 0, Sound.VOICE_SWAVE, null);
         arrEvents[SWITCH_WEAPON] =  new Event(1, 1, 3, 7, true, 0, Sound.VOICE_WEAPON, null);
